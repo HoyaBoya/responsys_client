@@ -9,6 +9,14 @@ module SunDawg
         @attributes = {}
       end
 
+      def values
+        a = []
+        @@fields.each do |field|
+          a << attributes[field]
+        end 
+        a
+      end
+
       class << self
         attr_reader :fields
 

@@ -5,8 +5,11 @@ require 'stub/defaultMappingRegistry.rb'
 
 module SunDawg
   class ResponsysClient
-    attr_reader :session_id
 
+    class TooManyUsersError < StandardError
+    end
+
+    attr_reader :session_id
     attr_accessor :keep_alive
 
     def initialize(username, password, options = {})
@@ -58,7 +61,30 @@ module SunDawg
     end
 
     def save_users(folder_name, list_name, users) 
-
+      raise TooManyUsersError if users.size > 200
+      with_session do
+        list_merge_rule = ListMergeRule.new
+        list_merge_rule.insertOnNoMatch = true
+        list_merge_rule.updateOnMatch = UpdateOnMatch::REPLACE_ALL
+        list_merge_rule.matchColumnName1 = "EMAIL_ADDRESS_"
+        list_merge_rule.defaultPermissionStatus = PermissionStatus::OPTIN
+        record_data = RecordData.new
+        record_data.fieldNames = SunDawg::Responsys::User.responsys_fields
+        record_data.records = []
+        users.each do |user|
+          record = Record.new
+          record = user.values
+          record_data.records << record
+        end
+        interact_object = InteractObject.new
+        interact_object.folderName = folder_name
+        interact_object.objectName = list_name
+        merge_list_members = MergeListMembers.new
+        merge_list_members.list = interact_object
+        merge_list_members.recordData = record_data
+        merge_list_members.mergeRule = list_merge_rule
+        @responsys_client.mergeListMembers merge_list_members
+      end
     end
 
     def with_session

@@ -39,9 +39,21 @@ class ResponsysClientTest < Test::Unit::TestCase
   def test_create_folder
     folder_name = "test_folder_#{Time.now.to_i}"
     @client.keep_alive = true
-    create_folder_response = @client.create_folder folder_name
-    assert create_folder_response.result
+    response = @client.create_folder folder_name
+    assert response.result
     results = @client.list_folders
     assert results.map { |i| i.name }.include? folder_name
+  end
+
+  def test_save_users
+    SunDawg::Responsys::User.add_field :email_address
+    SunDawg::Responsys::User.add_field :city
+    SunDawg::Responsys::User.add_field :state
+    user = SunDawg::Responsys::User.new
+    user.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
+    user.city = "San Francisco"
+    user.state = "CA"
+    response = @client.save_users "Animoto", "Animoto Test", [user] 
+    assert response.result
   end
 end
