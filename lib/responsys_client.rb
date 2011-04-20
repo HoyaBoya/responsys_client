@@ -98,6 +98,32 @@ module SunDawg
       end
     end
 
+    def trigger_campaign(folder_name, campaign_name, email, options = {})
+      # Responsys requires something in the optional data for SOAP bindings to work
+      options[:foo] = :bar if options.size == 0
+
+      with_session do
+        trigger_campaign_message = TriggerCampaignMessage.new
+        recipient = Recipient.new
+        recipient.emailAddress = email
+        recipient_data = RecipientData.new
+        recipient_data.optionalData = []
+        recipient_data.recipient = recipient
+        options.each_pair do |k, v|
+          optional_data = OptionalData.new
+          optional_data.name = k 
+          optional_data.value = v 
+          recipient_data.optionalData << optional_data
+        end
+        interact_object = InteractObject.new
+        interact_object.folderName = folder_name
+        interact_object.objectName = campaign_name
+        trigger_campaign_message.campaign = interact_object
+        trigger_campaign_message.recipientData = recipient_data
+        @responsys_client.triggerCampaignMessage trigger_campaign_message
+      end
+    end
+
     def with_session
       begin
         login if @session_id.nil?

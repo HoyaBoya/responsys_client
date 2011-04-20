@@ -61,4 +61,23 @@ class ResponsysClientTest < Test::Unit::TestCase
     response = @client.launch_campaign "Animoto", "HelloWorld"
     assert response.result 
   end
+
+  def test_trigger_campaign_with_optional_data
+    response = @client.trigger_campaign(
+      "Animoto", 
+      "HelloWorld", 
+      "chris.sun+test.1302783870@animoto.com", 
+      {:foo => :bar}
+    )
+    assert response.first.success
+  end
+
+  def test_trigger_campaign_without_optional_data
+    response = @client.trigger_campaign(
+      "Animoto",
+      "HelloWorld",
+      "chris.sun+test.1302783870@animoto.com"
+    )
+    assert response.first.success
+  end
 end
