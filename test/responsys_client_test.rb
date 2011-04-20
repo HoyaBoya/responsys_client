@@ -56,4 +56,9 @@ class ResponsysClientTest < Test::Unit::TestCase
     response = @client.save_users "Animoto", "Animoto Test", [user] 
     assert response.result
   end
+
+  def test_launch_campaign
+    response = @client.launch_campaign "Animoto", "HelloWorld"
+    assert response.result 
+  end
 end

@@ -87,6 +87,17 @@ module SunDawg
       end
     end
 
+    def launch_campaign(folder_name, campaign_name)
+      with_session do
+        launch_campaign = LaunchCampaign.new
+        interact_object = InteractObject.new
+        interact_object.folderName = folder_name 
+        interact_object.objectName = campaign_name 
+        launch_campaign.campaign = interact_object
+        @responsys_client.launchCampaign launch_campaign
+      end
+    end
+
     def with_session
       begin
         login if @session_id.nil?
