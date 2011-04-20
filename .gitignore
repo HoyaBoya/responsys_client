@@ -1,0 +1,6 @@
+pkg
+doc
+Manifest
+test/config.yml
+*.swp
+./**/.swp

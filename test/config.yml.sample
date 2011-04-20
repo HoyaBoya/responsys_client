@@ -1,0 +1,4 @@
+# Enter your username and password for testing from Responsys
+# Rename this file to config.yml to run tests
+username: "USERNAME"
+password: "PASSWORD"
