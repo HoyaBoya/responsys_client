@@ -7,9 +7,12 @@ module SunDawg
   class ResponsysClient
     attr_reader :session_id
 
+    attr_accessor :keep_alive
+
     def initialize(username, password, options = {})
       @username = username
       @password = password
+      @keep_alive = false
       @responsys_client = ResponsysWS.new
       @responsys_client.wiredump_dev = options[:wiredump_dev] if options[:wiredump_dev]
     end 
@@ -21,6 +24,7 @@ module SunDawg
         login_request.password = @password
         response = @responsys_client.login login_request
         @session_id = response.result.sessionId
+        assign_session
       end
     end
 
@@ -31,8 +35,12 @@ module SunDawg
     end
     
     def logout
-      logout_request = Logout.new
-      response = @responsys_client.logout logout_request
+      begin
+        logout_request = Logout.new
+        @responsys_client.logout logout_request
+      ensure
+        @session_id = nil 
+      end
     end
 
     def list_folders
@@ -41,13 +49,22 @@ module SunDawg
       end
     end
 
+    def create_folder(folder_name)
+      with_session do
+        create_folder_request = CreateFolder.new
+        create_folder_request.folderName = folder_name
+        @responsys_client.createFolder create_folder_request
+      end
+    end
+
     def with_session
       begin
-        login
-        assign_session
-        yield
+        login if @session_id.nil?
+        with_application_error do
+          yield
+        end
       ensure
-        logout  
+        logout unless @keep_alive 
       end
     end
 
