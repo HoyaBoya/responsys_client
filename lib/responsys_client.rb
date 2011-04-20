@@ -57,6 +57,10 @@ module SunDawg
       end
     end
 
+    def save_users(folder_name, list_name, users) 
+
+    end
+
     def with_session
       begin
         login if @session_id.nil?
