@@ -12,7 +12,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
     config = YAML.load_file("test/config.yml")
     @username = config["username"]
     @password = config["password"]
-    @client = SunDawg::ResponsysClient.new(@username, @password, :wiredump_dev => STDOUT)
+    @client = SunDawg::ResponsysClient.new(@username, @password)
   end
 
   class << self
