@@ -1,4 +1,4 @@
 require 'test/unit'
 require 'rubygems'
 
-INTEGRATION = true 
+INTEGRATION = true unless defined?(INTEGRATION)

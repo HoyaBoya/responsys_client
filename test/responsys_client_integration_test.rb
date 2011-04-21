@@ -2,11 +2,17 @@ require 'test_helper'
 require 'responsys_client'
 
 class ResponsysClientIntegrationTest < Test::Unit::TestCase 
+  FOLDER_NAME = "GemTest"
+  CAMPAIGN_NAME = "GemCampaignEmail"
+  CAMPAIGN_TRANSACTION_NAME = "GemTransactionalEmail"
+  LIST_NAME = "GemList"
+  EMAIL = "gem.test@responsys.client.gem.com"
+
   def setup
     config = YAML.load_file("test/config.yml")
     @username = config["username"]
     @password = config["password"]
-    @client = SunDawg::ResponsysClient.new(@username, @password)
+    @client = SunDawg::ResponsysClient.new(@username, @password, :wiredump_dev => STDOUT)
   end
 
   class << self
@@ -60,30 +66,30 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       user.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
       user.city = "San Francisco"
       user.state = "CA"
-      response = @client.save_users "Animoto", "Animoto Test", [user] 
+      response = @client.save_users FOLDER_NAME, LIST_NAME, [user] 
       assert response.result
     end
 
     def test_launch_campaign
-      response = @client.launch_campaign "Animoto", "HelloWorld"
+      response = @client.launch_campaign FOLDER_NAME, CAMPAIGN_NAME
       assert response.result 
     end
 
     def test_trigger_campaign_with_optional_data
       response = @client.trigger_campaign(
-        "Animoto", 
-        "HelloWorld", 
-        "chris.sun+test.1302783870@animoto.com", 
-        {:foo => :bar}
+        FOLDER_NAME, 
+        CAMPAIGN_TRANSACTION_NAME, 
+        EMAIL,
+        {:name => "Fred"}
       )
       assert response.first.success
     end
 
     def test_trigger_campaign_without_optional_data
       response = @client.trigger_campaign(
-        "Animoto",
-        "HelloWorld",
-        "chris.sun+test.1302783870@animoto.com"
+        FOLDER_NAME,
+        CAMPAIGN_TRANSACTION_NAME,
+        EMAIL
       )
       assert response.first.success
     end
