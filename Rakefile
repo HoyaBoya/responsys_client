@@ -10,5 +10,5 @@ Echoe.new('sundawg_responsys_client', '0.0.1') do |p|
   p.email          = "christopher.sun@gmail.com"
   p.ignore_pattern = ["tmp/*", "script/*"]
   p.development_dependencies = []
-  p.runtime_dependencies = ['soap4r >=1.5.8']
+  p.runtime_dependencies = ['soap4r >=1.5.8', 'fastercsv >=1.5.4']
 end

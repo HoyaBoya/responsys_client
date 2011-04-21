@@ -1,3 +1,5 @@
+require 'fastercsv'
+
 module SunDawg
   module Responsys
     class User
@@ -19,6 +21,24 @@ module SunDawg
 
       class << self
         attr_reader :fields
+
+        def to_csv(users)
+          FasterCSV.generate do |csv|
+            csv << responsys_fields
+            users.each do |user|
+              csv << user.values
+            end
+          end 
+        end
+
+        def to_csv_file(users, file_name)
+          FasterCSV.open(file_name, "w") do |csv|
+            csv << responsys_fields
+            users.each do |user|
+              csv << user.values
+            end
+          end
+        end
 
         def clear_fields!
           @@fields.clear

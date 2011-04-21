@@ -31,4 +31,15 @@ class UserTest < Test::Unit::TestCase
     user.nernt = 123 
     assert_equal ["value_1", "value_2", 123], user.values
   end
+
+  def test_to_csv
+    SunDawg::Responsys::User.add_field :email_address
+    SunDawg::Responsys::User.add_field :first_name
+    user = SunDawg::Responsys::User.new
+    user.email_address = "sun.dawg@dawg.net"
+    user.first_name = "Chris" 
+    csv = SunDawg::Responsys::User.to_csv([user])
+    assert_match "EMAIL_ADDRESS_,FIRST_NAME_", csv
+    assert_match "sun.dawg@dawg.net,Chris", csv
+  end
 end
