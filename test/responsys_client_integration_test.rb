@@ -71,8 +71,13 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
     end
 
     def test_launch_campaign
-      response = @client.launch_campaign FOLDER_NAME, CAMPAIGN_NAME
-      assert response.result 
+      begin
+        response = @client.launch_campaign FOLDER_NAME, CAMPAIGN_NAME
+        assert response.result 
+      rescue CampaignFault => e
+        # Responsys does not allow campaigns to be launched less than 15 minute attempts
+        assert_equal "Launch attempt failed: A campaign cannot be launched more than once per 15 minutes.", e.exception_message
+      end
     end
 
     def test_trigger_campaign_with_optional_data

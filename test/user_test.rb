@@ -32,6 +32,15 @@ class UserTest < Test::Unit::TestCase
     assert_equal ["value_1", "value_2", 123], user.values
   end
 
+  def test_attributes
+    SunDawg::Responsys::User.add_field :foo
+    SunDawg::Responsys::User.add_field :bar
+    user = SunDawg::Responsys::User.new
+    user.attributes = {:foo => "value_1", :bar => "value_2"}
+    assert_equal "value_1", user.foo
+    assert_equal "value_2", user.bar
+  end
+
   def test_to_csv
     SunDawg::Responsys::User.add_field :email_address
     SunDawg::Responsys::User.add_field :first_name

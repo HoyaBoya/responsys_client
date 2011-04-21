@@ -8,6 +8,8 @@ module SunDawg
 
     class TooManyUsersError < StandardError
     end
+    class ResponsysTimeoutError < StandardError
+    end
 
     attr_reader :session_id
     attr_accessor :keep_alive
@@ -124,14 +126,26 @@ module SunDawg
       end
     end
 
+    def with_timeout
+      Timeout::timeout(5, ResponsysTimeoutError) do
+        yield
+      end
+    end
+
     def with_session
       begin
-        login if @session_id.nil?
+        with_timeout do
+          login if @session_id.nil?
+        end
         with_application_error do
-          yield
+          with_timeout do
+            yield
+          end
         end
       ensure
-        logout unless @keep_alive 
+        with_timeout do
+          logout unless @keep_alive 
+        end
       end
     end
 
