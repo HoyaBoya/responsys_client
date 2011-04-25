@@ -62,8 +62,8 @@ module SunDawg
       end
     end
 
-    def save_users(folder_name, list_name, users) 
-      raise TooManyUsersError if users.size > 200
+    def save_members(folder_name, list_name, members) 
+      raise TooManyUsersError if members.size > 200
       with_session do
         list_merge_rule = ListMergeRule.new
         list_merge_rule.insertOnNoMatch = true
@@ -73,9 +73,9 @@ module SunDawg
         record_data = RecordData.new
         record_data.fieldNames = SunDawg::Responsys::User.responsys_fields
         record_data.records = []
-        users.each do |user|
+        members.each do |member|
           record = Record.new
-          record = user.values
+          record = member.values
           record_data.records << record
         end
         interact_object = InteractObject.new

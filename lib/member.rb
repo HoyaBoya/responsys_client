@@ -2,7 +2,7 @@ require 'fastercsv'
 
 module SunDawg
   module Responsys
-    class User
+    class Member 
       attr_accessor :attributes
 
       @@fields = []
@@ -22,20 +22,20 @@ module SunDawg
       class << self
         attr_reader :fields
 
-        def to_csv(users)
+        def to_csv(members)
           FasterCSV.generate do |csv|
             csv << responsys_fields
-            users.each do |user|
-              csv << user.values
+            members.each do |member|
+              csv << member.values
             end
           end 
         end
 
-        def to_csv_file(users, file_name)
+        def to_csv_file(members, file_name)
           FasterCSV.open(file_name, "w") do |csv|
             csv << responsys_fields
-            users.each do |user|
-              csv << user.values
+            members.each do |member|
+              csv << member.values
             end
           end
         end

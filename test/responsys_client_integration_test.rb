@@ -10,9 +10,9 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
 
   def setup
     config = YAML.load_file("test/config.yml")
-    @username = config["username"]
+    @membername = config["membername"]
     @password = config["password"]
-    @client = SunDawg::ResponsysClient.new(@username, @password)
+    @client = SunDawg::ResponsysClient.new(@membername, @password)
   end
 
   class << self
@@ -58,15 +58,15 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       assert results.map { |i| i.name }.include? folder_name
     end
 
-    def test_save_users
-      SunDawg::Responsys::User.add_field :email_address
-      SunDawg::Responsys::User.add_field :city
-      SunDawg::Responsys::User.add_field :state
-      user = SunDawg::Responsys::User.new
-      user.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
-      user.city = "San Francisco"
-      user.state = "CA"
-      response = @client.save_users FOLDER_NAME, LIST_NAME, [user] 
+    def test_save_members
+      SunDawg::Responsys::Member.add_field :email_address
+      SunDawg::Responsys::Member.add_field :city
+      SunDawg::Responsys::Member.add_field :state
+      member = SunDawg::Responsys::Member.new
+      member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
+      member.city = "San Francisco"
+      member.state = "CA"
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
       assert response.result
     end
 
