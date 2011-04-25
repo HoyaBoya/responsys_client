@@ -15,6 +15,12 @@ class MemberTest < Test::Unit::TestCase
     assert_equal "bar", member.FOO_
   end
 
+  def test_fields
+    SunDawg::Responsys::Member.add_field :foo
+    SunDawg::Responsys::Member.add_field :bar
+    assert_equal [:foo, :bar], SunDawg::Responsys::Member.fields
+  end
+
   def test_responsys_fields
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar

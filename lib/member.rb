@@ -20,7 +20,9 @@ module SunDawg
       end
 
       class << self
-        attr_reader :fields
+        def fields
+          @@fields
+        end
 
         def to_csv(members)
           FasterCSV.generate do |csv|
