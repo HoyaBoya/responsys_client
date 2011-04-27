@@ -46,15 +46,4 @@ class MemberTest < Test::Unit::TestCase
     assert_equal "value_1", member.foo
     assert_equal "value_2", member.bar
   end
-
-  def test_to_csv
-    SunDawg::Responsys::Member.add_field :email_address
-    SunDawg::Responsys::Member.add_field :first_name
-    member = SunDawg::Responsys::Member.new
-    member.email_address = "sun.dawg@dawg.net"
-    member.first_name = "Chris" 
-    csv = SunDawg::Responsys::Member.to_csv([member])
-    assert_match "EMAIL_ADDRESS_,FIRST_NAME_", csv
-    assert_match "sun.dawg@dawg.net,Chris", csv
-  end
 end

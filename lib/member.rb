@@ -24,18 +24,9 @@ module SunDawg
           @@fields
         end
 
-        def to_csv(members)
-          FasterCSV.generate do |csv|
-            csv << responsys_fields
-            members.each do |member|
-              csv << member.values
-            end
-          end 
-        end
-
-        def to_csv_file(members, file_name)
-          FasterCSV.open(file_name, "w") do |csv|
-            csv << responsys_fields
+        def to_csv_file(members, file_name, headers = false)
+          FasterCSV.open(file_name, "a") do |csv|
+            csv << responsys_fields if headers
             members.each do |member|
               csv << member.values
             end
