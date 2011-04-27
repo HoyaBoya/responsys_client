@@ -6,9 +6,18 @@ require 'stub/defaultMappingRegistry.rb'
 module SunDawg
   class ResponsysClient
 
+    MAX_MEMBERS = 200
+
     class TooManyMembersError < StandardError
     end
+
     class ResponsysTimeoutError < StandardError
+    end
+
+    class MethodsNotSupportedError < StandardError
+    end
+
+    class InconsistentPermissionStatusError < StandardError
     end
 
     attr_reader :session_id
@@ -62,14 +71,17 @@ module SunDawg
       end
     end
 
-    def save_members(folder_name, list_name, members) 
-      raise TooManyMembersError if members.size > 200
+    def save_members(folder_name, list_name, members, permission_status = PermissionStatus::OPTIN) 
+      raise MethodsNotSupportedError unless SunDawg::Responsys::Member.fields.include?(:email_address) && SunDawg::Responsys::Member.fields.include?(:email_permission_status)
+      raise TooManyMembersError if members.size > MAX_MEMBERS
+      raise InconsistentPermissionStatusError if members.reject { |i| i.email_permission_status != permission_status }.size != members.size
+
       with_session do
         list_merge_rule = ListMergeRule.new
         list_merge_rule.insertOnNoMatch = true
         list_merge_rule.updateOnMatch = UpdateOnMatch::REPLACE_ALL
         list_merge_rule.matchColumnName1 = "EMAIL_ADDRESS_"
-        list_merge_rule.defaultPermissionStatus = PermissionStatus::OPTIN
+        list_merge_rule.defaultPermissionStatus = permission_status
         record_data = RecordData.new
         record_data.fieldNames = SunDawg::Responsys::Member.responsys_fields
         record_data.records = []

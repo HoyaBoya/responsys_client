@@ -7,8 +7,8 @@ module SunDawg
 
       @@fields = []
 
-      def initialize
-        @attributes = {}
+      def initialize(options = {})
+        @attributes = options 
       end
 
       def values

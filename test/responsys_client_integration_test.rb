@@ -12,7 +12,8 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
     config = YAML.load_file("test/config.yml")
     @username = config["username"]
     @password = config["password"]
-    @client = SunDawg::ResponsysClient.new(@username, @password, :wiredump_dev => STDOUT)
+    @client = SunDawg::ResponsysClient.new(@username, @password) #, :wiredump_dev => STDOUT)
+    SunDawg::Responsys::Member.clear_fields!
   end
 
   class << self
@@ -60,10 +61,12 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
 
     def test_save_members
       SunDawg::Responsys::Member.add_field :email_address
+      SunDawg::Responsys::Member.add_field :email_permission_status
       SunDawg::Responsys::Member.add_field :city
       SunDawg::Responsys::Member.add_field :state
       member = SunDawg::Responsys::Member.new
       member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
+      member.email_permission_status = PermissionStatus::OPTIN
       member.city = "San Francisco"
       member.state = "CA"
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
