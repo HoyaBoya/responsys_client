@@ -6,6 +6,7 @@ module SunDawg
       attr_accessor :attributes
 
       @@fields = []
+      @@system_fields = []
 
       def initialize(options = {})
         @attributes = options 
@@ -24,6 +25,10 @@ module SunDawg
           @@fields
         end
 
+        def system_fields
+          @@system_fields 
+        end
+
         def to_csv_file(members, file_name, headers = false)
           FasterCSV.open(file_name, "a") do |csv|
             csv << responsys_fields if headers
@@ -35,6 +40,7 @@ module SunDawg
 
         def clear_fields!
           @@fields.clear
+          @@system_fields.clear
         end
 
         def responsys_fields
@@ -43,8 +49,9 @@ module SunDawg
           end
         end
 
-        def add_field (f)
+        def add_field (f, system = false)
           @@fields << f
+          @@system_fields << f if system
 
           define_method f do
             attributes[f]
@@ -63,7 +70,11 @@ module SunDawg
 
         # Turns all field attribute names into Responsys uppercase with _ i.e. foo => FOO_
         def to_responsys_field(s)
-          s.to_s.upcase + "_"
+          if @@system_fields.include?(s)
+            s.to_s.upcase + "_"
+          else
+            s.to_s.upcase
+          end
         end
       end
     end

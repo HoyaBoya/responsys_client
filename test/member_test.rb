@@ -12,7 +12,7 @@ class MemberTest < Test::Unit::TestCase
     member = SunDawg::Responsys::Member.new
     member.foo = "bar"
     assert_equal "bar", member.foo
-    assert_equal "bar", member.FOO_
+    assert_equal "bar", member.FOO
   end
 
   def test_fields
@@ -24,7 +24,19 @@ class MemberTest < Test::Unit::TestCase
   def test_responsys_fields
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar
-    assert_equal ["FOO_", "BAR_"], SunDawg::Responsys::Member.responsys_fields
+    assert_equal ["FOO", "BAR"], SunDawg::Responsys::Member.responsys_fields
+  end
+
+  def test_responsys_system_fields
+    SunDawg::Responsys::Member.add_field :foo, true
+    SunDawg::Responsys::Member.add_field :bar, true
+    SunDawg::Responsys::Member.add_field :woot
+    assert_equal ["FOO_", "BAR_", "WOOT"], SunDawg::Responsys::Member.responsys_fields
+    member = SunDawg::Responsys::Member.new
+    member.foo = "value_1"
+    member.bar = "value_2"
+    member.woot = 123 
+    assert_equal ["value_1", "value_2", 123], member.values
   end
 
   def test_values
