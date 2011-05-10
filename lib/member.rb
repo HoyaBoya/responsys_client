@@ -52,9 +52,9 @@ module SunDawg
           data_attributes = [:customer_id] + data_attributes unless data_attributes.include?(:customer_id)
           build_csv_file(members, data_file_name, data_attributes, headers)
 
-          user_attributes = @@fields.reject { |i| !@@profile_fields.include?(i) }
+          user_attributes = @@fields.select { |i| @@profile_fields.include?(i) }
           user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
-          build_csv_file(members, user_file_name, data_attributes, headers) 
+          build_csv_file(members, user_file_name, user_attributes, headers) 
         end
 
         def clear_fields!
