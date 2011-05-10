@@ -7,15 +7,20 @@ module SunDawg
 
       @@fields = []
       @@system_fields = []
+      @@profile_fields = []
 
       def initialize(options = {})
         @attributes = options 
       end
 
-      def values
+      def values(selected_fields = nil)
         a = []
         @@fields.each do |field|
-          a << attributes[field]
+          if selected_fields
+            a << attributes[field] if selected_fields.include?(field)
+          else
+            a << attributes[field]
+          end
         end 
         a
       end
@@ -29,13 +34,27 @@ module SunDawg
           @@system_fields 
         end
 
+        def profile_fields
+          @@profile_fields 
+        end
+
+        def profile_fields=(a)
+          @@profile_fields = a
+        end
+
         def to_csv_file(members, file_name, headers = false)
-          FasterCSV.open(file_name, "a") do |csv|
-            csv << responsys_fields if headers
-            members.each do |member|
-              csv << member.values
-            end
-          end
+          build_csv_file(members, file_name, @@fields, headers)
+        end
+     
+        # Produces two CSV files, one for the user profile section and for extraneous data 
+        def to_csv_splitted_file(members, user_file_name, data_file_name, headers = false)
+          data_attributes = @@fields.reject { |i| @@profile_fields.include?(i) }
+          data_attributes = [:customer_id] + data_attributes unless data_attributes.include?(:customer_id)
+          build_csv_file(members, data_file_name, data_attributes, headers)
+
+          user_attributes = @@fields.reject { |i| !@@profile_fields.include?(i) }
+          user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
+          build_csv_file(members, user_file_name, data_attributes, headers) 
         end
 
         def clear_fields!
@@ -43,8 +62,8 @@ module SunDawg
           @@system_fields.clear
         end
 
-        def responsys_fields
-          @@fields.map do |i|
+        def responsys_fields(a = nil)
+          (a || @@fields).map do |i|
             to_responsys_field(i)
           end
         end
@@ -74,6 +93,15 @@ module SunDawg
             s.to_s.upcase + "_"
           else
             s.to_s.upcase
+          end
+        end
+
+        def build_csv_file(members, file_name, attributes, headers)
+          FasterCSV.open(file_name, "a") do |csv|
+            csv << responsys_fields(attributes) if headers
+            members.each do |member|
+              csv << member.values(attributes)
+            end
           end
         end
       end

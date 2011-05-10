@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Sun"]
-  s.date = %q{2011-04-27}
+  s.date = %q{2011-05-10}
   s.description = %q{Ruby SOAP Client For Responsys API}
   s.email = %q{christopher.sun@gmail.com}
   s.extra_rdoc_files = ["README", "lib/member.rb", "lib/responsys_client.rb", "lib/stub/ResponsysWSServiceClient.rb", "lib/stub/default.rb", "lib/stub/defaultDriver.rb", "lib/stub/defaultMappingRegistry.rb", "lib/wsdl/wsdl_4_11_2011.wsdl"]
@@ -26,12 +26,15 @@ Gem::Specification.new do |s|
     if Gem::Version.new(Gem::VERSION) >= Gem::Version.new('1.2.0') then
       s.add_runtime_dependency(%q<soap4r>, [">= 1.5.8"])
       s.add_runtime_dependency(%q<fastercsv>, [">= 1.5.4"])
+      s.add_development_dependency(%q<mocha>, [">= 0.9.12"])
     else
       s.add_dependency(%q<soap4r>, [">= 1.5.8"])
       s.add_dependency(%q<fastercsv>, [">= 1.5.4"])
+      s.add_dependency(%q<mocha>, [">= 0.9.12"])
     end
   else
     s.add_dependency(%q<soap4r>, [">= 1.5.8"])
     s.add_dependency(%q<fastercsv>, [">= 1.5.4"])
+    s.add_dependency(%q<mocha>, [">= 0.9.12"])
   end
 end
