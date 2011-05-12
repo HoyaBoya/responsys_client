@@ -1,0 +1,15 @@
+= SunDawg Responsys Client
+
+== About
+
+This project is a Ruby gem to communicate with Responsys (www.responsys.com), an enterprise email service provider. This code is neither officially supported nor endorsed by Responsys.
+
+The purpose of this project is to provide a more friendly Ruby wrapper to their SOAP API. The initial ruby code was generated from their WSDL, as of April 2011, via the SOAP4R project (http://rubygems.org/gems/soap4r). Additional monkey fixes were needed to support SOAP headers that the Responsys API depends on.
+
+== What You Need
+
+You will need a valid SOAP username and password to communicate with their API.
+
+== TODO
+
+This gem is still in development mode. It is not hosted on rubygems.org yet.
