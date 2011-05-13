@@ -7,6 +7,21 @@ class MemberTest < Test::Unit::TestCase
      SunDawg::Responsys::Member.clear_fields!
   end
 
+  def test_parse_feedback_csv
+    SunDawg::Responsys::Member.add_field :customer_id, true
+    SunDawg::Responsys::Member.add_field :email_address, true
+    results = SunDawg::Responsys::Member.parse_feedback_csv("#{File.dirname(__FILE__)}/feedback.csv")
+    assert_equal 3, results.size
+    results.values.each do |reason|
+      assert_equal "INVALID FORMAT FOR EMAIL ADDRESS", reason
+    end
+    results.keys.each do |member|
+      assert member.instance_of?(SunDawg::Responsys::Member)
+      assert member.customer_id
+      assert member.email_address
+    end
+  end
+
   def test_attribute_methods
     SunDawg::Responsys::Member.add_field :foo
     member = SunDawg::Responsys::Member.new
@@ -25,6 +40,13 @@ class MemberTest < Test::Unit::TestCase
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar
     assert_equal ["FOO", "BAR"], SunDawg::Responsys::Member.responsys_fields
+  end
+
+  def test_from_responsys_field
+    assert_equal "foo", SunDawg::Responsys::Member.send(:from_responsys_field, "FOO")
+    assert_equal "foo_bar", SunDawg::Responsys::Member.send(:from_responsys_field, "FOO_BAR")
+    SunDawg::Responsys::Member.add_field :tweet, true
+    assert_equal "tweet", SunDawg::Responsys::Member.send(:from_responsys_field, "TWEET_")
   end
 
   def test_responsys_system_fields

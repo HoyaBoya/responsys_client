@@ -42,6 +42,26 @@ module SunDawg
           @@profile_fields = a
         end
 
+        # Parses the response CSV file from Responys
+        def parse_feedback_csv(file_name)
+          results = {}
+          csv = FasterCSV.read(file_name)
+          headers = csv.first
+          csv.shift
+          csv.each do |row|
+            member = Member.new
+            i = 0
+            headers.each do |header| 
+              value = row[i]
+              header = from_responsys_field(header)
+              member.send("#{header}=", value) if member.respond_to?("#{header}=")
+              i += 1
+            end
+            results[member] = row.first
+          end
+          results
+        end
+
         def to_csv_file(members, file_name, headers = false)
           build_csv_file(members, file_name, @@fields, headers)
         end
@@ -94,6 +114,12 @@ module SunDawg
           else
             s.to_s.upcase
           end
+        end
+
+        # Turns all field attribute names from Responsys into ruby convention snake_case. FOO_BAR_ => foo_bar
+        def from_responsys_field(s)
+          s = s.to_s.downcase
+          s.gsub(/_$/, "")
         end
 
         def build_csv_file(members, file_name, attributes, headers)
