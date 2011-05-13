@@ -10,6 +10,98 @@ The purpose of this project is to provide a more friendly Ruby wrapper to their 
 
 You will need a valid SOAP username and password to communicate with their API.
 
-== TODO
+== Objects
+
+There are two key objects contained within the gem, the actual API Client, ResponsysClient, and the user object, Member.
+
+=== Member
+
+The member object contains all of the user fields you want to replicate to Responsys in your email list.
+
+It contains a class level list of attributes and system attributes that will be serialized into proper Responsys attributes for either a bulk export or API insert/update.
+
+  include SunDawg::Responsys
+
+  #
+  # Create fields we will syndicate to Responsys
+  #
+
+  # Clear anything previously set (just in case)
+  Member.clear_fields!
+
+  #
+  # Set our fields
+  #
+
+  # Set system level Responsys fields
+  Member.add_field :customer_id, true
+  Member.add_field :email_permission_status, true
+  Member.add_field :email_address, true
+
+  # Set application level Responsys fields 
+  Member.add_field :user_type
+  Member.add_field :first_name
+  Member.add_field :last_name
+  Member.add_field :gender
+
+This will declare the attributes for Responsys and define setters/getters for the member object. This means you can do:
+  member = Member.new
+  member.customer_id = 123
+  member.email_address = "chris@company.com"
+  member.first_name = "chris"
+  member.first_name
+  => "chris"
+
+You can also set an attributes hash in the method constructor or attributes variable.
+
+  member = Member.new(:customer_id => 123, :email_address => "chris@company.com")
+  member.attributes.merge({:first_name => "Chris", :user_type => "basic"})
+
+What are the difference between "system" and "application" fields? Responsys indicates that system fields are those fields that are part of every basic customer list. When communicating with them, they are denoted with a trailing a "_", such as CUSTOMER_ID_ and EMAIL_ADDRESS_. Application fields are specific to your relationship with Responsys and are just FOO and BAR, without the trailing underscore. The member object tries to abstract this convention away.
+
+== CSV Handling
+
+Responsys supports multiple methods of bulk importing user data through CSV through their dashboard and SFTP. When you have your member object declared, you can quickly serialize your user object into a Responsys member.
+
+  members = []
+  your_user_models.each do |user|
+    members << convert_to_responsys(user)
+  end
+  Member.to_csv_file(members, "/tmp/responsys.csv", true)
+
+This will create a csv file of members with a header row on top. Please note that the to_csv_file method will append to any existing CSV. This is done to allow for you to continue to append to a file if you decide to query your user database in batches, like so via ActiveRecord.
+
+  Member.to_csv_file([], "/tmp/responsys.csv", true)
+  User.find_in_batches do |group|
+    members = []
+    members = []
+    your_user_models.each do |user|
+      members << convert_to_responsys(user)
+    end
+    Member.to_csv_file(members, "/tmp/responsys.csv", false)
+  end
+
+This will first create a header row, then create batches of members without the header row.
+
+Responsys also encourages the use of "splitted" CSV files where you send two CSV files linked by customer_id. This allows it to handle large uploads easier by separating data intrinsic to the user.
+
+This can be achieved be doing:
+  
+  # Declare the fields that belong on the basic user profile. Everything else is "data" that is not really intrinsic to the user.
+  Member.profile_fields = [:customer_id, :email_permission_status, :email_address, :user_type
+  Member.to_csv_file(members, "/tmp/user.csv", "/tmp/data.csv", false)
+
+You can also parse the response CSV file from Responsys. This is useful to find out which record were not accepted by Responsys and perhaps indicate in your database that the user is invalid for some reason. It is assumed that you have declared the attributes of your Member before.
+
+  Member.add_field :customer_id, true
+  results = Member.parse_feedback_csv("/tmp/feedback.csv")
+  results.each_pair do |member, reason|
+    user = User.find(member.customer_id)
+    user.reason_for_failed_replicate = reason
+    user.do_something_else
+    user.save
+  end
+
+== IMPORTANT 
 
 This gem is still in development mode. It is not hosted on rubygems.org yet.
