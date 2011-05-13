@@ -52,7 +52,7 @@ This will declare the attributes for Responsys and define setters/getters for th
   member.first_name
   => "chris"
 
-You can also set an attributes hash in the method constructor or attributes variable.
+You can also set an attributes hash in the method constructor or attributes accessor.
 
   member = Member.new(:customer_id => 123, :email_address => "chris@company.com")
   member.attributes.merge({:first_name => "Chris", :user_type => "basic"})
@@ -61,7 +61,7 @@ What are the difference between "system" and "application" fields? Responsys ind
 
 == CSV Handling
 
-Responsys supports multiple methods of bulk importing user data through CSV through their dashboard and SFTP. When you have your member object declared, you can quickly serialize your user object into a Responsys member.
+Responsys supports multiple methods of bulk importing user data through CSV via their dashboard and SFTP. When you have your member object declared, you can quickly serialize your user object into a Responsys member.
 
   members = []
   your_user_models.each do |user|
@@ -69,29 +69,29 @@ Responsys supports multiple methods of bulk importing user data through CSV thro
   end
   Member.to_csv_file(members, "/tmp/responsys.csv", true)
 
-This will create a csv file of members with a header row on top. Please note that the to_csv_file method will append to any existing CSV. This is done to allow for you to continue to append to a file if you decide to query your user database in batches, like so via ActiveRecord.
+This will create a csv file of members with a header row on top. Please note that the to_csv_file method will append to any existing CSV. This is done to allow you to append to a file if you decide to query your user database in batches, like so via ActiveRecord.
 
   Member.to_csv_file([], "/tmp/responsys.csv", true)
   User.find_in_batches do |group|
     members = []
-    members = []
-    your_user_models.each do |user|
+    group.each do |user|
       members << convert_to_responsys(user)
     end
     Member.to_csv_file(members, "/tmp/responsys.csv", false)
   end
 
-This will first create a header row, then create batches of members without the header row.
+This will first create a header row, then create batches of members without the header row in the same file.
 
 Responsys also encourages the use of "splitted" CSV files where you send two CSV files linked by customer_id. This allows it to handle large uploads easier by separating data intrinsic to the user.
 
 This can be achieved be doing:
   
-  # Declare the fields that belong on the basic user profile. Everything else is "data" that is not really intrinsic to the user.
-  Member.profile_fields = [:customer_id, :email_permission_status, :email_address, :user_type
+  # Declare the fields that belong on the basic user profile. Everything else is "data" that is not really intrinsic to the user. Other fields, like foo and bar will be placed in "data".
+  Member.profile_fields = [:customer_id, :email_permission_status, :email_address, :user_type]
   Member.to_csv_file(members, "/tmp/user.csv", "/tmp/data.csv", false)
 
-You can also parse the response CSV file from Responsys. This is useful to find out which record were not accepted by Responsys and perhaps indicate in your database that the user is invalid for some reason. It is assumed that you have declared the attributes of your Member before.
+
+You can also parse the response CSV file from Responsys. This is useful to find out which records were not accepted by Responsys and perhaps indicate in your database that the user is invalid for some reason. It is assumed that you have declared the attributes of your Member beforehand.
 
   Member.add_field :customer_id, true
   results = Member.parse_feedback_csv("/tmp/feedback.csv")
