@@ -3,11 +3,18 @@ require 'fastercsv'
 module SunDawg
   module Responsys
     class Member 
+      class UndefinedExtensions < StandardError
+      end
+
       attr_accessor :attributes
 
       @@fields = []
       @@system_fields = []
-      @@profile_fields = []
+
+      #
+      # :file => [:attribute_1, :attribute_2, :attribute_3]
+      #
+      @@extension_fields = {} 
 
       def initialize(options = {})
         @attributes = options 
@@ -34,12 +41,12 @@ module SunDawg
           @@system_fields 
         end
 
-        def profile_fields
-          @@profile_fields 
+        def extension_fields
+          @@extension_fields 
         end
 
-        def profile_fields=(a)
-          @@profile_fields = a
+        def extension_fields=(h)
+          @@extension_fields = h
         end
 
         # Parses the response CSV file from Responys
@@ -66,15 +73,26 @@ module SunDawg
           build_csv_file(members, file_name, @@fields, headers)
         end
      
-        # Produces two CSV files, one for the user profile section and for extraneous data 
-        def to_csv_splitted_file(members, user_file_name, data_file_name, headers = false)
-          data_attributes = @@fields.reject { |i| @@profile_fields.include?(i) }
-          data_attributes = [:customer_id] + data_attributes unless data_attributes.include?(:customer_id)
-          build_csv_file(members, data_file_name, data_attributes, headers)
+        # Produces multiple CSV files based on what has been defined for profile extensions
+        def to_csv_extension_files(members, root_directory, headers = false)
+          raise UndefinedExtensions if @@extension_fields.nil? || @@extension_fields.empty?
+          extension_fields = []
+          @@extension_fields.values do |i|
+            extension_fields += i
+          end
+          extension_fields.flatten!
 
-          user_attributes = @@fields.select { |i| @@profile_fields.include?(i) }
+          # Create the primary profile CSV
+          user_attributes = @@fields.select { |i| extension_fields.include?(i) }
           user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
-          build_csv_file(members, user_file_name, user_attributes, headers) 
+          build_csv_file(members, "#{root_directory}/user.csv", user_attributes, headers) 
+
+          # Create the profile extension CSVs
+          @@extension_fields.each_pair do |file_name, attributes|
+            data_attributes = @@fields.reject { |i| attributes.include?(i) }
+            data_attributes = [:customer_id] + data_attributes unless data_attributes.include?(:customer_id)
+            build_csv_file(members, "#{root_directory}/#{file_name}.csv", data_attributes, headers)
+          end
         end
 
         def clear_fields!

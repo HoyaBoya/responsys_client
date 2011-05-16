@@ -85,15 +85,18 @@ class MemberTest < Test::Unit::TestCase
     SunDawg::Responsys::Member.add_field :customer_id
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar
-    SunDawg::Responsys::Member.profile_fields = [:foo]
+    SunDawg::Responsys::Member.extension_fields = {:file_a => [:foo], :file_b => [:bar]}
     member = SunDawg::Responsys::Member.new
     member.attributes = {:foo => "value_1", :bar => "value_2", :customer_id => 123}
-    SunDawg::Responsys::Member.expects(:build_csv_file).twice
-    SunDawg::Responsys::Member.to_csv_splitted_file([member], "user.csv", "data.csv", true)
+    SunDawg::Responsys::Member.expects(:build_csv_file).times(3)
+    SunDawg::Responsys::Member.to_csv_extension_files([member], "/tmp", true)
   end
 
   def test_profile_fields
-    SunDawg::Responsys::Member.profile_fields = [:foo]
-    assert_equal [:foo], SunDawg::Responsys::Member.profile_fields
+    SunDawg::Responsys::Member.extension_fields = {
+      :file_a => [:foo],
+      :file_b => [:bar]
+    }
+    assert_equal [:file_a, :file_b], SunDawg::Responsys::Member.extension_fields.keys
   end
 end
