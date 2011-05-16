@@ -83,15 +83,14 @@ module SunDawg
           extension_fields.flatten!
 
           # Create the primary profile CSV
-          user_attributes = @@fields.select { |i| extension_fields.include?(i) }
+          user_attributes = @@fields.reject { |i| extension_fields.include?(i) }
           user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
           build_csv_file(members, "#{root_directory}/user.csv", user_attributes, headers) 
 
           # Create the profile extension CSVs
           @@extension_fields.each_pair do |file_name, attributes|
-            data_attributes = @@fields.reject { |i| attributes.include?(i) }
-            data_attributes = [:customer_id] + data_attributes unless data_attributes.include?(:customer_id)
-            build_csv_file(members, "#{root_directory}/#{file_name}.csv", data_attributes, headers)
+            attributes = [:customer_id] + attributes unless attributes.include?(:customer_id)
+            build_csv_file(members, "#{root_directory}/#{file_name}.csv", attributes, headers)
           end
         end
 
