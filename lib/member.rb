@@ -69,15 +69,15 @@ module SunDawg
           results
         end
 
-        def to_csv_file(members, file_name, headers = false)
-          build_csv_file(members, file_name, @@fields, headers)
+        def to_csv_file(members, file_name, headers, access)
+          build_csv_file(members, file_name, @@fields, headers, access)
         end
      
         # Produces multiple CSV files based on what has been defined for profile extensions
-        def to_csv_extension_files(members, root_directory, headers = false)
+        def to_csv_extension_files(members, root_directory, headers, access)
           raise UndefinedExtensions if @@extension_fields.nil? || @@extension_fields.empty?
           extension_fields = []
-          @@extension_fields.values do |i|
+          @@extension_fields.values.each do |i|
             extension_fields += i
           end
           extension_fields.flatten!
@@ -85,12 +85,12 @@ module SunDawg
           # Create the primary profile CSV
           user_attributes = @@fields.reject { |i| extension_fields.include?(i) }
           user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
-          build_csv_file(members, "#{root_directory}/user.csv", user_attributes, headers) 
+          build_csv_file(members, "#{root_directory}/user.csv", user_attributes, headers, access) 
 
           # Create the profile extension CSVs
           @@extension_fields.each_pair do |file_name, attributes|
             attributes = [:customer_id] + attributes unless attributes.include?(:customer_id)
-            build_csv_file(members, "#{root_directory}/#{file_name}.csv", attributes, headers)
+            build_csv_file(members, "#{root_directory}/#{file_name}.csv", attributes, headers, access)
           end
         end
 
@@ -139,8 +139,8 @@ module SunDawg
           s.gsub(/_$/, "")
         end
 
-        def build_csv_file(members, file_name, attributes, headers)
-          FasterCSV.open(file_name, "a") do |csv|
+        def build_csv_file(members, file_name, attributes, headers, access = "w")
+          FasterCSV.open(file_name, access) do |csv|
             csv << responsys_fields(attributes) if headers
             members.each do |member|
               csv << member.values(attributes)
