@@ -20,15 +20,11 @@ module SunDawg
         @attributes = options 
       end
 
-      def values(selected_fields = nil)
+      def values(selected_fields = @@fields)
         a = []
-        @@fields.each do |field|
-          if selected_fields
-            a << attributes[field] if selected_fields.include?(field)
-          else
-            a << attributes[field]
-          end
-        end 
+        selected_fields.each do |field|
+          a << attributes[field]
+        end
         a
       end
 
