@@ -37,10 +37,19 @@ module SunDawg
           @@system_fields 
         end
 
+        def member_fields
+          a = []
+          extension_fields.values.each do |i|
+            a += i
+          end
+          fields.reject{ |i| a.include?(i) }
+        end
+
         def extension_fields
           @@extension_fields 
         end
 
+        # :extension_table => [:field_1, :field_2, :field_3]
         def extension_fields=(h)
           @@extension_fields = h
         end

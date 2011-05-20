@@ -92,6 +92,16 @@ class MemberTest < Test::Unit::TestCase
     SunDawg::Responsys::Member.to_csv_extension_files([member], "/tmp", true, "w")
   end
 
+  def test_member_fields
+    SunDawg::Responsys::Member.add_field :customer_id
+    SunDawg::Responsys::Member.add_field :foo
+    SunDawg::Responsys::Member.add_field :bar
+    SunDawg::Responsys::Member.add_field :chooch
+    SunDawg::Responsys::Member.add_field :nooch
+    SunDawg::Responsys::Member.extension_fields = {:file_a => [:foo], :file_b => [:bar]}
+    assert_equal [:customer_id, :chooch, :nooch], SunDawg::Responsys::Member.member_fields
+  end
+
   def test_profile_fields
     SunDawg::Responsys::Member.extension_fields = {
       :file_a => [:foo],
