@@ -74,12 +74,19 @@ module SunDawg
           results
         end
 
-        def to_csv_file(members, file_name, headers, access)
-          build_csv_file(members, file_name, @@fields, headers, access)
+        def to_csv_file(members, file_name, options = {})
+          options[:headers] ||= true
+          options[:access] ||= "w"
+          options[:file_token] ||= ""
+          build_csv_file(members, file_name + options[:file_token], @@fields, options[:headers], options[:access])
         end
      
         # Produces multiple CSV files based on what has been defined for profile extensions
-        def to_csv_extension_files(members, root_directory, headers, access)
+        def to_csv_extension_files(members, root_directory, options = {})
+          options[:headers] ||= true
+          options[:access] ||= "w"
+          options[:file_token] ||= ""
+
           raise UndefinedExtensions if @@extension_fields.nil? || @@extension_fields.empty?
           extension_fields = []
           @@extension_fields.values.each do |i|
@@ -90,12 +97,12 @@ module SunDawg
           # Create the primary profile CSV
           user_attributes = @@fields.reject { |i| extension_fields.include?(i) }
           user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
-          build_csv_file(members, "#{root_directory}/user.csv", user_attributes, headers, access) 
+          build_csv_file(members, "#{root_directory}/member#{options[:file_token]}.csv", user_attributes, options[:headers], options[:access]) 
 
           # Create the profile extension CSVs
           @@extension_fields.each_pair do |file_name, attributes|
             attributes = [:customer_id] + attributes unless attributes.include?(:customer_id)
-            build_csv_file(members, "#{root_directory}/#{file_name}.csv", attributes, headers, access)
+            build_csv_file(members, "#{root_directory}/#{file_name}#{options[:file_token]}.csv", attributes, options[:headers], options[:access])
           end
         end
 

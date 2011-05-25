@@ -6,7 +6,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 1.2") if s.respond_to? :required_rubygems_version=
   s.authors = ["Christopher Sun"]
-  s.date = %q{2011-05-16}
+  s.date = %q{2011-05-25}
   s.description = %q{Ruby SOAP Client For Responsys API}
   s.email = %q{christopher.sun@gmail.com}
   s.extra_rdoc_files = ["README.rdoc", "lib/member.rb", "lib/responsys_client.rb", "lib/stub/ResponsysWSServiceClient.rb", "lib/stub/default.rb", "lib/stub/defaultDriver.rb", "lib/stub/defaultMappingRegistry.rb", "lib/wsdl/wsdl_4_11_2011.wsdl"]
