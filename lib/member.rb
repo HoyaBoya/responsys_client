@@ -75,7 +75,7 @@ module SunDawg
         end
 
         def to_csv_file(members, file_name, options = {})
-          options[:headers] ||= true
+          options[:headers] = true if options[:headers].nil?
           options[:access] ||= "w"
           options[:file_token] ||= ""
           build_csv_file(members, file_name + options[:file_token], @@fields, options[:headers], options[:access])
@@ -83,7 +83,7 @@ module SunDawg
      
         # Produces multiple CSV files based on what has been defined for profile extensions
         def to_csv_extension_files(members, root_directory, options = {})
-          options[:headers] ||= true
+          options[:headers] = true if options[:headers].nil?
           options[:access] ||= "w"
           options[:file_token] ||= ""
 
