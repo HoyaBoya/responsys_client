@@ -2,7 +2,7 @@ require 'test_helper'
 require 'responsys_client'
 
 class ResponsysClientIntegrationTest < Test::Unit::TestCase 
-  FOLDER_NAME = "GemTest"
+  FOLDER_NAME = "Test_Gem"
   CAMPAIGN_NAME = "GemCampaignEmail"
   CAMPAIGN_TRANSACTION_NAME = "GemTransactionalEmail"
   LIST_NAME = "GemList"
