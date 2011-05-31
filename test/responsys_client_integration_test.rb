@@ -60,10 +60,10 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
     end
 
     def test_save_members
-      SunDawg::Responsys::Member.add_field :email_address
-      SunDawg::Responsys::Member.add_field :email_permission_status
-      SunDawg::Responsys::Member.add_field :city
-      SunDawg::Responsys::Member.add_field :state
+      SunDawg::Responsys::Member.add_field :email_address, true
+      SunDawg::Responsys::Member.add_field :email_permission_status, true
+      SunDawg::Responsys::Member.add_field :city, true
+      SunDawg::Responsys::Member.add_field :state, true
       member = SunDawg::Responsys::Member.new
       member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
       member.email_permission_status = PermissionStatus::OPTIN
@@ -71,6 +71,46 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       member.state = "CA"
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
       assert response.result
+    end
+
+    def test_keep_session
+      SunDawg::Responsys::Member.add_field :email_address, true
+      SunDawg::Responsys::Member.add_field :email_permission_status, true
+      SunDawg::Responsys::Member.add_field :city, true
+      SunDawg::Responsys::Member.add_field :state, true
+
+      member = SunDawg::Responsys::Member.new
+      member.email_address = "sundawg-montgomery@sundawg.net"
+      member.email_permission_status = PermissionStatus::OPTIN
+      member.city = "Montgomery"
+      member.state = "AL"
+
+      # When the keep_alive option has not been set (default) then the client 
+      # must reconnect for every request or a FaultError will be raised on 
+      # multiple requests
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
+      assert response.result
+      error = assert_raise SOAP::FaultError do
+        @client.save_members FOLDER_NAME, LIST_NAME, [member] 
+      end
+
+      # When the keep_alive option has been set then the client does not need
+      # to reconnect for every request
+      @client = SunDawg::ResponsysClient.new(@username, @password, :keep_alive => true)
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
+      assert response.result
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
+      assert response.result
+
+      # When the keep_alive option has not been set (default) then the client 
+      # does not need to reconnect for every request if keep_alive is set
+      @client = SunDawg::ResponsysClient.new(@username, @password)
+      @client.keep_alive = true
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
+      assert response.result
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
+      assert response.result
+
     end
 
     def test_launch_campaign
