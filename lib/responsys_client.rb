@@ -79,8 +79,8 @@ module SunDawg
       end
     end
 
-    def save_members(folder_name, list_name, members, permission_status = PermissionStatus::OPTIN) 
-      raise MethodsNotSupportedError unless SunDawg::Responsys::Member.fields.include?(:email_address) && SunDawg::Responsys::Member.fields.include?(:email_permission_status)
+    def save_members(folder_name, list_name, members, attributes = SunDawg::Responsys::Member.responsys_fields, permission_status = PermissionStatus::OPTIN) 
+      raise MethodsNotSupportedError unless SunDawg::Responsys::Member.fields.include?(:email_address) && SunDawg::Responsys::Member.fields.include?(:email_permission_status) && SunDawg::Responsys::Member.fields.include?(:customer_id)
       raise TooManyMembersError if members.size > MAX_MEMBERS
       raise InconsistentPermissionStatusError if members.reject { |i| i.email_permission_status != permission_status }.size != members.size
 
@@ -88,14 +88,14 @@ module SunDawg
         list_merge_rule = ListMergeRule.new
         list_merge_rule.insertOnNoMatch = true
         list_merge_rule.updateOnMatch = UpdateOnMatch::REPLACE_ALL
-        list_merge_rule.matchColumnName1 = "EMAIL_ADDRESS_"
+        list_merge_rule.matchColumnName1 = "CUSTOMER_ID_"
         list_merge_rule.defaultPermissionStatus = permission_status
         record_data = RecordData.new
-        record_data.fieldNames = SunDawg::Responsys::Member.responsys_fields
+        record_data.fieldNames = attributes 
         record_data.records = []
         members.each do |member|
           record = Record.new
-          record = member.values
+          record = member.values(attributes)
           record_data.records << record
         end
         interact_object = InteractObject.new

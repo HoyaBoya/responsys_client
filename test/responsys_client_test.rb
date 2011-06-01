@@ -15,6 +15,7 @@ class ResponsysClientTest < Test::Unit::TestCase
   end
 
   def test_save_members_throws_too_many_members_error 
+    SunDawg::Responsys::Member.add_field :customer_id
     SunDawg::Responsys::Member.add_field :email_address
     SunDawg::Responsys::Member.add_field :email_permission_status
     members = []
@@ -26,7 +27,7 @@ class ResponsysClientTest < Test::Unit::TestCase
     end
   end
 
-  def test_save_members_throws_too_methods_not_supported_error_with_no_email_address
+  def test_save_members_throws_methods_not_supported_error_with_no_email_address
     SunDawg::Responsys::Member.add_field :email_address
     member = SunDawg::Responsys::Member.new
     assert_raises SunDawg::ResponsysClient::MethodsNotSupportedError do
@@ -34,7 +35,7 @@ class ResponsysClientTest < Test::Unit::TestCase
     end
   end
 
-  def test_save_members_throws_too_methods_not_supported_error_with_no_email_permission_status
+  def test_save_members_throws_methods_not_supported_error_with_no_email_permission_status
     SunDawg::Responsys::Member.add_field :email_permission_status
     member = SunDawg::Responsys::Member.new
     assert_raises SunDawg::ResponsysClient::MethodsNotSupportedError do
@@ -43,6 +44,7 @@ class ResponsysClientTest < Test::Unit::TestCase
   end
 
   def test_save_members_throws_inconsistent_permission_status_error
+    SunDawg::Responsys::Member.add_field :customer_id
     SunDawg::Responsys::Member.add_field :email_address
     SunDawg::Responsys::Member.add_field :email_permission_status
     members = []

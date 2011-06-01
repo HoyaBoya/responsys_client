@@ -60,6 +60,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
     end
 
     def test_save_members
+      SunDawg::Responsys::Member.add_field :customer_id, true
       SunDawg::Responsys::Member.add_field :email_address, true
       SunDawg::Responsys::Member.add_field :email_permission_status, true
       SunDawg::Responsys::Member.add_field :city, true
@@ -73,7 +74,25 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       assert response.result
     end
 
+    def test_save_members_with_attributes
+      SunDawg::Responsys::Member.add_field :customer_id, true
+      SunDawg::Responsys::Member.add_field :email_address, true
+      SunDawg::Responsys::Member.add_field :email_permission_status, true
+      SunDawg::Responsys::Member.add_field :city, true
+      SunDawg::Responsys::Member.add_field :state, true
+      member = SunDawg::Responsys::Member.new
+      member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
+      member.email_permission_status = PermissionStatus::OPTIN
+      member.city = "San Francisco"
+      member.state = "CA"
+      member.expects(:state).never
+      response = @client.save_members FOLDER_NAME, LIST_NAME, [member], [:customer_id, :email_address, :city]
+      assert response.result
+    end
+
+
     def test_keep_session
+      SunDawg::Responsys::Member.add_field :customer_id, true
       SunDawg::Responsys::Member.add_field :email_address, true
       SunDawg::Responsys::Member.add_field :email_permission_status, true
       SunDawg::Responsys::Member.add_field :city, true
@@ -110,7 +129,6 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       assert response.result
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
       assert response.result
-
     end
 
     def test_launch_campaign
