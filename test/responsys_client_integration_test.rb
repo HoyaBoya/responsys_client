@@ -66,7 +66,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       SunDawg::Responsys::Member.add_field :city, true
       SunDawg::Responsys::Member.add_field :state, true
       member = SunDawg::Responsys::Member.new
-      member.customer_id = 1
+      member.customer_id = Time.now.to_i 
       member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
       member.email_permission_status = PermissionStatus::OPTIN
       member.city = "San Francisco"
@@ -82,7 +82,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       SunDawg::Responsys::Member.add_field :city, true
       SunDawg::Responsys::Member.add_field :state, true
       member = SunDawg::Responsys::Member.new
-      member.customer_id = 1
+      member.customer_id = Time.now.to_i 
       member.email_address = "lol.cats.sundawg.#{Time.now.to_i}@sundawg.net"
       member.email_permission_status = PermissionStatus::OPTIN
       member.city = "San Francisco"
@@ -101,7 +101,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       SunDawg::Responsys::Member.add_field :state, true
 
       member = SunDawg::Responsys::Member.new
-      member.customer_id = 1
+      member.customer_id = Time.now.to_i 
       member.email_address = "sundawg-montgomery@sundawg.net"
       member.email_permission_status = PermissionStatus::OPTIN
       member.city = "Montgomery"
