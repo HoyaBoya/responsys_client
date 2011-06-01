@@ -83,7 +83,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       SunDawg::Responsys::Member.add_field :state, true
       member = SunDawg::Responsys::Member.new
       member.customer_id = 1
-      member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
+      member.email_address = "lol.cats.sundawg.#{Time.now.to_i}@sundawg.net"
       member.email_permission_status = PermissionStatus::OPTIN
       member.city = "San Francisco"
       member.state = "CA"
