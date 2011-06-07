@@ -43,15 +43,4 @@ class ResponsysClientTest < Test::Unit::TestCase
     end
   end
 
-  def test_save_members_throws_inconsistent_permission_status_error
-    SunDawg::Responsys::Member.add_field :customer_id
-    SunDawg::Responsys::Member.add_field :email_address
-    SunDawg::Responsys::Member.add_field :email_permission_status
-    members = []
-    members << SunDawg::Responsys::Member.new(:email_permission_status => PermissionStatus::OPTIN)
-    members << SunDawg::Responsys::Member.new(:email_permission_status => PermissionStatus::OPTOUT)
-    assert_raises SunDawg::ResponsysClient::InconsistentPermissionStatusError do
-      SunDawg::ResponsysClient.new("foo", "bar").save_members("folder", "list", members)
-    end
-  end
 end
