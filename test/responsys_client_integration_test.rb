@@ -68,7 +68,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       member = SunDawg::Responsys::Member.new
       member.customer_id = Time.now.to_i 
       member.email_address = "sundawg.#{Time.now.to_i}@sundawg.net"
-      member.email_permission_status = PermissionStatus::OPTIN
+      member.email_permission_status = "I"
       member.city = "San Francisco"
       member.state = "CA"
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
