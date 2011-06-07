@@ -107,6 +107,8 @@ class MemberTest < Test::Unit::TestCase
       :file_a => [:foo],
       :file_b => [:bar]
     }
-    assert_equal [:file_a, :file_b], SunDawg::Responsys::Member.extension_fields.keys
+    [:file_a, :file_b].each do |i|
+      SunDawg::Responsys::Member.extension_fields.keys.include?(i)
+    end
   end
 end
