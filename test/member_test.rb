@@ -22,6 +22,22 @@ class MemberTest < Test::Unit::TestCase
     end
   end
 
+  def test_parse_import_file
+    SunDawg::Responsys::Member.add_field :customer_id, true
+    SunDawg::Responsys::Member.add_field :email_address, true
+    results = SunDawg::Responsys::Member.import_file("#{File.dirname(__FILE__)}/import.txt")
+    assert_equal 3, results.size
+    results.each do |member|
+      assert member.instance_of?(SunDawg::Responsys::Member)
+    end
+    assert !results[0].customer_id, "result 0 has no customer_id"
+    assert_equal "narekumar@responsys.com", results[0].email_address
+    assert_equal "1", results[1].customer_id, "result 1 has customer_id 1"
+    assert_equal "a1@responsys.com", results[1].email_address
+    assert_equal "dbc-1021359", results[2].customer_id, "result 2 has customer_id"
+    assert_equal "varinderjit@live.com", results[2].email_address
+  end
+
   def test_attribute_methods
     SunDawg::Responsys::Member.add_field :foo
     member = SunDawg::Responsys::Member.new

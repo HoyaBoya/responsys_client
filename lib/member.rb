@@ -74,6 +74,29 @@ module SunDawg
           results
         end
 
+        # Parses Responsys tab-delimitted feedback file
+        def import_file(file_name)
+          members = []
+          File.open(file_name, "r") do |file_handle|
+            headers = nil
+            while line = file_handle.gets
+              cols = line.split(/[\n\t]/)
+              if headers.nil?
+                headers = cols
+              else
+                member = Member.new
+                headers.each do |header|
+                  header = from_responsys_field(header)
+                  value = cols.shift
+                  member.send("#{header}=", value) if member.respond_to?("#{header}=")
+                end
+                members << member
+              end
+            end
+          end
+          members
+        end
+
         def to_csv_file(members, file_name, options = {})
           options[:headers] = true if options[:headers].nil?
           options[:access] ||= "w"
