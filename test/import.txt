@@ -1,4 +1,4 @@
-EVENT_TYPE_ID	ACCOUNT_ID	LIST_ID	RIID	CUSTOMER_ID	EVENT_CAPTURED_DT	EVENT_STORED_DT	CAMPAIGN_ID	EXT_CAMPAIGN_ID	LAUNCH_ID	EMAIL_FORMAT	SOURCE	REASON	EMAIL	CONTACT_INFO	GENDER	LASTNAME	FIRSTNAME	EMAIL_ADDRESS_	CUSTOMER_ID_	LNAME	FNAME	CID	NUMBER_SALARY	HASHCODE	PROMOID	ACCOUNTID
-7	1043	6655	1619982		16-Feb-2010 07:31:41	16-Feb-2010 07:32:01	0			T	UI - Data Viewer	DV:MERGE	narekumar@responsys.com	narekumar@responsys.com				narekumar@responsys.com								
-7	1043	5059	1618861	1	15-Feb-2010 13:07:12	15-Feb-2010 13:07:32	0			H	UI - Data Viewer	DV:MERGE	a1@responsys.com	a1@responsys.com				a1@responsys.com	1							
-7	1043	5198	1618838	dbc-1021359	15-Feb-2010 11:55:17	15-Feb-2010 11:55:37	0			H	UI - Data Viewer	DV:MERGE	varinderjit@live.com	varinderjit@live.com				varinderjit@live.com	dbc-1021359							
+"EVENT_TYPE_ID","ACCOUNT_ID","LIST_ID","RIID","CUSTOMER_ID","EVENT_CAPTURED_DT","EVENT_STORED_DT","CAMPAIGN_ID","LAUNCH_ID","EMAIL_FORMAT","SOURCE","REASON","EMAIL","CONTACT_INFO"
+"7","50209","1012","1407280","855006","15-Jul-2011 04:42:32","15-Jul-2011 04:42:47","1345","1387","M","Unsubscribe Page/Link","Unsubscribe Page","leigh.walters@united.com","leigh.walters@united.com"
+"7","50209","1012","1438565","886389","15-Jul-2011 04:45:47","15-Jul-2011 04:46:02","1345","1387","M","Unsubscribe Page/Link","Unsubscribe Page","gcandido@cox.net","gcandido@cox.net"
+"7","50209","1012","4477551","3052672","15-Jul-2011 06:02:15","15-Jul-2011 06:02:30","0","","N","Exchange - Webservice","WS:MERGE","deleteduser@delete.animoto.com","deleteduser@delete.animoto.com"

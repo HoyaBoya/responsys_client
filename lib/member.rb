@@ -77,21 +77,20 @@ module SunDawg
         # Parses Responsys tab-delimitted feedback file
         def import_file(file_name)
           members = []
-          File.open(file_name, "r") do |file_handle|
-            headers = nil
-            while line = file_handle.gets
-              cols = line.split(/[\n\t]/)
-              if headers.nil?
-                headers = cols
-              else
-                member = Member.new
-                headers.each do |header|
-                  header = from_responsys_field(header)
-                  value = cols.shift
-                  member.send("#{header}=", value) if member.respond_to?("#{header}=")
-                end
-                members << member
+          headers = nil
+          table = FasterCSV.read(file_name)
+          table.each do |row|
+            if headers.nil?
+              headers = row
+              headers.each { |h| add_field from_responsys_field(h), h.match(/_$/) }
+            else
+              member = Member.new
+              headers.each do |header|
+                header = from_responsys_field(header)
+                value = row.shift
+                member.send("#{header}=", value) if member.respond_to?("#{header}=")
               end
+              members << member
             end
           end
           members

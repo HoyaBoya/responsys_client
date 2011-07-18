@@ -30,12 +30,13 @@ class MemberTest < Test::Unit::TestCase
     results.each do |member|
       assert member.instance_of?(SunDawg::Responsys::Member)
     end
-    assert !results[0].customer_id, "result 0 has no customer_id"
-    assert_equal "narekumar@responsys.com", results[0].email_address
-    assert_equal "1", results[1].customer_id, "result 1 has customer_id 1"
-    assert_equal "a1@responsys.com", results[1].email_address
-    assert_equal "dbc-1021359", results[2].customer_id, "result 2 has customer_id"
-    assert_equal "varinderjit@live.com", results[2].email_address
+    [["855006", "leigh.walters@united.com"],
+     ["886389", "gcandido@cox.net"],
+     ["3052672", "deleteduser@delete.animoto.com"]].each do |expected|
+      actual = results.shift
+      assert_equal expected[0], actual.customer_id
+      assert_equal expected[1], actual.email
+    end
   end
 
   def test_attribute_methods
