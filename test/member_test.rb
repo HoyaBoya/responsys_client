@@ -50,6 +50,8 @@ class MemberTest < Test::Unit::TestCase
   def test_fields
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar
+    # This should not add an additional field
+    SunDawg::Responsys::Member.add_field :bar
     assert_equal [:foo, :bar], SunDawg::Responsys::Member.fields
   end
 

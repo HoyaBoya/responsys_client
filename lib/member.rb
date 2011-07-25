@@ -140,6 +140,9 @@ module SunDawg
         end
 
         def add_field (f, system = false)
+          # Prevent redundant fields
+          return if @@fields.include?(f)
+
           @@fields << f
           @@system_fields << f if system
 
