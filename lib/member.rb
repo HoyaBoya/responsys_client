@@ -82,7 +82,6 @@ module SunDawg
           table.each do |row|
             if headers.nil?
               headers = row
-              headers.each { |h| add_field from_responsys_field(h), h.match(/_$/) }
             else
               member = Member.new
               headers.each do |header|
@@ -137,6 +136,10 @@ module SunDawg
           (a || @@fields).map do |i|
             to_responsys_field(i)
           end
+        end
+
+        def has_field? (f, system = false)
+          @@fields.include?(f) && (@@system_fields.include?(f) == system)
         end
 
         def add_field (f, system = false)

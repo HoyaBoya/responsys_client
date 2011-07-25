@@ -24,7 +24,7 @@ class MemberTest < Test::Unit::TestCase
 
   def test_parse_import_file
     SunDawg::Responsys::Member.add_field :customer_id, true
-    SunDawg::Responsys::Member.add_field :email_address, true
+    SunDawg::Responsys::Member.add_field :email, true
     results = SunDawg::Responsys::Member.import_file("#{File.dirname(__FILE__)}/import.txt")
     assert_equal 3, results.size
     results.each do |member|
@@ -50,9 +50,19 @@ class MemberTest < Test::Unit::TestCase
   def test_fields
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar
-    # This should not add an additional field
+    SunDawg::Responsys::Member.add_field :hello, true
+    # Fields should be unique and defined the first time
     SunDawg::Responsys::Member.add_field :bar
-    assert_equal [:foo, :bar], SunDawg::Responsys::Member.fields
+    SunDawg::Responsys::Member.add_field :hello
+    assert_equal [:foo, :bar, :hello], SunDawg::Responsys::Member.fields
+    assert_equal ["FOO", "BAR", "HELLO_"], SunDawg::Responsys::Member.responsys_fields
+  end
+
+  def test_has_field
+    SunDawg::Responsys::Member.add_field :foo
+    SunDawg::Responsys::Member.add_field :bar
+    assert SunDawg::Responsys::Member.has_field? :foo
+    assert SunDawg::Responsys::Member.has_field? :bar
   end
 
   def test_responsys_fields
