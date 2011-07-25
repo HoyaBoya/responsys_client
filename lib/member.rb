@@ -138,8 +138,12 @@ module SunDawg
           end
         end
 
-        def has_field? (f, system = false)
-          @@fields.include?(f) && (@@system_fields.include?(f) == system)
+        def has_field? (f)
+          @@fields.include?(f) 
+        end
+
+        def has_system_field? (f)
+          @@fields.include?(f) && @@system_fields.include?(f)
         end
 
         def add_field (f, system = false)

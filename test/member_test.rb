@@ -60,9 +60,11 @@ class MemberTest < Test::Unit::TestCase
 
   def test_has_field
     SunDawg::Responsys::Member.add_field :foo
-    SunDawg::Responsys::Member.add_field :bar
-    assert SunDawg::Responsys::Member.has_field? :foo
-    assert SunDawg::Responsys::Member.has_field? :bar
+    SunDawg::Responsys::Member.add_field :bar, true
+    assert SunDawg::Responsys::Member.has_field?(:foo)
+    assert SunDawg::Responsys::Member.has_field?(:bar)
+    assert !SunDawg::Responsys::Member.has_system_field?(:foo)
+    assert SunDawg::Responsys::Member.has_system_field?(:bar)
   end
 
   def test_responsys_fields
