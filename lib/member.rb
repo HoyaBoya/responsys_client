@@ -23,7 +23,9 @@ module SunDawg
       def values(selected_fields = @@fields)
         a = []
         selected_fields.each do |field|
-          a << attributes[field]
+          value = attributes[field]
+          value.gsub!(/[[:cntrl:]]/,' ') if value.is_a? String
+          a << value
         end
         a
       end

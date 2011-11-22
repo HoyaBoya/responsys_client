@@ -43,4 +43,38 @@ class ResponsysClientTest < Test::Unit::TestCase
     end
   end
 
+  def test_save_members_removes_illegal_xml_characters
+    SunDawg::Responsys::Member.add_field :customer_id
+    SunDawg::Responsys::Member.add_field :email_address
+    SunDawg::Responsys::Member.add_field :email_permission_status
+    SunDawg::Responsys::Member.add_field :user_text
+
+    member = SunDawg::Responsys::Member.new
+    member.user_text = "Text with a vertical \v tab"
+
+    ws = stub(:login => stub(:result => stub(:sessionId => 'session ID')),
+              :logout => true,
+              :headerhandler => stub(:add))
+    ResponsysWS.stubs(:new).returns(ws)
+
+    ws.expects(:mergeListMembers).with do |mlm|
+      mlm.recordData.records[0].none? {|r| r.to_s =~ /[[:cntrl:]]/}
+    end
+
+    SunDawg::ResponsysClient.new('foo','bar').save_members('folder', 'list', [member])
+  end
+
+  def test_trigger_campaign_removes_illegal_xml_characters
+    ws = stub(:login => stub(:result => stub(:sessionId => 'session ID')),
+              :logout => true,
+              :headerhandler => stub(:add))
+    ResponsysWS.stubs(:new).returns(ws)
+
+    ws.expects(:triggerCampaignMessage).with do |tcm|
+      tcm.recipientData.optionalData.none? {|od| od.value =~ /[[:cntrl:]]/}
+    end
+
+    SunDawg::ResponsysClient.new('foo','bar').trigger_user_campaign('campaign', {:id => 5}, { 'DataField' => "vertical\vtab" })
+  end
+  
 end

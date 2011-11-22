@@ -133,7 +133,8 @@ module SunDawg
         recipient_data.recipient = recipient
         options.each_pair do |k, v|
           optional_data = OptionalData.new
-          optional_data.name = k 
+          optional_data.name = k
+          v.gsub!(/[[:cntrl:]]/, ' ') if v.is_a? String
           optional_data.value = v 
           recipient_data.optionalData << optional_data
         end
