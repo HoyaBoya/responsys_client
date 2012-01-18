@@ -12,7 +12,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
     config = YAML.load_file("test/config.yml")
     @username = config["username"]
     @password = config["password"]
-    @client = SunDawg::ResponsysClient.new(@username, @password) #, :wiredump_dev => STDOUT)
+    @client = SunDawg::Responsys::ResponsysClient.new(@username, @password) #, :wiredump_dev => STDOUT)
     SunDawg::Responsys::Member.clear_fields!
   end
 
@@ -30,7 +30,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
   with_integration do
     def test_invalid_login
       error = assert_raise AccountFault do
-        SunDawg::ResponsysClient.new("foo", "bar").login
+        SunDawg::Responsys::ResponsysClient.new("foo", "bar").login
       end
       assert_equal ExceptionCode::INVALID_USER_NAME, error.exception_code
     end
@@ -118,7 +118,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
 
       # When the keep_alive option has been set then the client does not need
       # to reconnect for every request
-      @client = SunDawg::ResponsysClient.new(@username, @password, :keep_alive => true)
+      @client = SunDawg::Responsys::ResponsysClient.new(@username, @password, :keep_alive => true)
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
       assert response.result
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
@@ -126,7 +126,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
 
       # When the keep_alive option has not been set (default) then the client 
       # does not need to reconnect for every request if keep_alive is set
-      @client = SunDawg::ResponsysClient.new(@username, @password)
+      @client = SunDawg::Responsys::ResponsysClient.new(@username, @password)
       @client.keep_alive = true
       response = @client.save_members FOLDER_NAME, LIST_NAME, [member] 
       assert response.result

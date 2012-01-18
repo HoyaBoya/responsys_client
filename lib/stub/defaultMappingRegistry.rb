@@ -9,16 +9,16 @@ module DefaultMappingRegistry
   NsXMLSchema = "http://www.w3.org/2001/XMLSchema"
 
   EncodedRegistry.register(
-    :class => LoginResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LoginResult"),
+    :class => SunDawg::Responsys::LoginResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LoginResult"),
     :schema_element => [
       ["sessionId", "SOAP::SOAPString"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => ServerAuthResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ServerAuthResult"),
+    :class => SunDawg::Responsys::ServerAuthResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ServerAuthResult"),
     :schema_element => [
       ["authSessionId", "SOAP::SOAPString"],
       ["encryptedClientChallenge", "SOAP::SOAPByte[]", [1, nil]],
@@ -27,16 +27,16 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => FolderResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FolderResult"),
+    :class => SunDawg::Responsys::FolderResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FolderResult"),
     :schema_element => [
       ["name", "SOAP::SOAPString"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => InteractObject,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "InteractObject"),
+    :class => SunDawg::Responsys::InteractObject,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::InteractObject"),
     :schema_element => [
       ["folderName", "SOAP::SOAPString"],
       ["objectName", "SOAP::SOAPString"]
@@ -44,32 +44,32 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => FolderObjectResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FolderObjectResult"),
+    :class => SunDawg::Responsys::FolderObjectResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FolderObjectResult"),
     :schema_element => [
       ["id", "SOAP::SOAPLong"],
-      ["name", "InteractObject"],
-      ["type", "FolderObjectType"],
+      ["name", "SunDawg::Responsys::InteractObject"],
+      ["type", "SunDawg::Responsys::FolderObjectType"],
       ["subType", "SOAP::SOAPString"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => Recipient,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "Recipient"),
+    :class => SunDawg::Responsys::Recipient,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::Recipient"),
     :schema_element => [
-      ["listName", "InteractObject"],
+      ["listName", "SunDawg::Responsys::InteractObject"],
       ["recipientId", "SOAP::SOAPLong"],
       ["customerId", "SOAP::SOAPString"],
       ["emailAddress", "SOAP::SOAPString"],
       ["mobileNumber", "SOAP::SOAPString"],
-      ["emailFormat", "EmailFormat"]
+      ["emailFormat", "SunDawg::Responsys::EmailFormat"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => OptionalData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "OptionalData"),
+    :class => SunDawg::Responsys::OptionalData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::OptionalData"),
     :schema_element => [
       ["name", "SOAP::SOAPString"],
       ["value", "SOAP::SOAPString"]
@@ -77,49 +77,49 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => CampaignProperties,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CampaignProperties"),
+    :class => SunDawg::Responsys::CampaignProperties,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CampaignProperties"),
     :schema_element => [
-      ["campaign", "InteractObject"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
       ["campaignId", "SOAP::SOAPLong"],
-      ["campaignType", "CampaignType"],
+      ["campaignType", "SunDawg::Responsys::CampaignType"],
       ["description", "SOAP::SOAPString"],
       ["marketingProgram", "SOAP::SOAPString"],
       ["marketingStrategy", "SOAP::SOAPString"],
-      ["list", "InteractObject"],
-      ["refiningFilters", "InteractObject[]", [1, nil]],
-      ["refiningDataSource", "InteractObject"],
-      ["governanceFilter", "InteractObject"],
-      ["supplementalCampaignDataSources", "InteractObject[]", [1, nil]],
-      ["suppressionLists", "InteractObject[]", [1, nil]],
-      ["supplementalProofDataSources", "InteractObject[]", [1, nil]],
-      ["supplementalSeedDataSources", "InteractObject[]", [1, nil]],
-      ["proofList", "InteractObject"],
-      ["seedList", "InteractObject"],
-      ["segmentation", "InteractObject[]", [1, nil]],
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["refiningFilters", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["refiningDataSource", "SunDawg::Responsys::InteractObject"],
+      ["governanceFilter", "SunDawg::Responsys::InteractObject"],
+      ["supplementalCampaignDataSources", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["suppressionLists", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["supplementalProofDataSources", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["supplementalSeedDataSources", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["proofList", "SunDawg::Responsys::InteractObject"],
+      ["seedList", "SunDawg::Responsys::InteractObject"],
+      ["segmentation", "SunDawg::Responsys::InteractObject[]", [1, nil]],
       ["fromName", "SOAP::SOAPString"],
       ["fromEmail", "SOAP::SOAPString"],
       ["replyToEmail", "SOAP::SOAPString"],
       ["bccEmail", "SOAP::SOAPString"],
       ["subject", "SOAP::SOAPString"],
-      ["htmlMessage", "InteractObject"],
-      ["textMessage", "InteractObject"],
+      ["htmlMessage", "SunDawg::Responsys::InteractObject"],
+      ["textMessage", "SunDawg::Responsys::InteractObject"],
       ["enableLinkTracking", "SOAP::SOAPBoolean"],
-      ["linkTable", "InteractObject"],
+      ["linkTable", "SunDawg::Responsys::InteractObject"],
       ["enableExternalTracking", "SOAP::SOAPBoolean"],
-      ["externalTrackingParams", "OptionalData[]", [1, nil]],
-      ["attachments", "InteractObject[]", [1, nil]],
-      ["campaignVariables", "OptionalData[]", [1, nil]],
-      ["campaignPurpose", "CampaignPurpose"],
+      ["externalTrackingParams", "SunDawg::Responsys::OptionalData[]", [1, nil]],
+      ["attachments", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["campaignVariables", "SunDawg::Responsys::OptionalData[]", [1, nil]],
+      ["campaignPurpose", "SunDawg::Responsys::CampaignPurpose"],
       ["useUTF8", "SOAP::SOAPBoolean"],
-      ["locale", "RecipientLocale"],
+      ["locale", "SunDawg::Responsys::RecipientLocale"],
       ["trackHtmlOpens", "SOAP::SOAPBoolean"],
       ["trackConversions", "SOAP::SOAPBoolean"],
       ["sendTextIfHTMLUnknown", "SOAP::SOAPBoolean"],
       ["segmentTrackingColumnName", "SOAP::SOAPString"],
-      ["unsubscribeOption", "UnsubscribeOption"],
+      ["unsubscribeOption", "SunDawg::Responsys::UnsubscribeOption"],
       ["unsubscribeForm", "SOAP::SOAPString"],
-      ["autoCloseOption", "AutoCloseOption"],
+      ["autoCloseOption", "SunDawg::Responsys::AutoCloseOption"],
       ["autoCloseValue", "SOAP::SOAPString"],
       ["closedCampaignURL", "SOAP::SOAPString"],
       ["externalCampaignCode", "SOAP::SOAPString"],
@@ -128,17 +128,17 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => RecipientData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecipientData"),
+    :class => SunDawg::Responsys::RecipientData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecipientData"),
     :schema_element => [
-      ["recipient", "Recipient"],
-      ["optionalData", "OptionalData[]", [1, nil]]
+      ["recipient", "SunDawg::Responsys::Recipient"],
+      ["optionalData", "SunDawg::Responsys::OptionalData[]", [1, nil]]
     ]
   )
 
   EncodedRegistry.register(
-    :class => TriggerResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "TriggerResult"),
+    :class => SunDawg::Responsys::TriggerResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::TriggerResult"),
     :schema_element => [
       ["recipientId", "SOAP::SOAPLong"],
       ["success", "SOAP::SOAPBoolean"],
@@ -147,8 +147,8 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => CustomEvent,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CustomEvent"),
+    :class => SunDawg::Responsys::CustomEvent,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CustomEvent"),
     :schema_element => [
       ["eventName", "SOAP::SOAPString"],
       ["eventId", "SOAP::SOAPLong"],
@@ -159,17 +159,17 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ProofLaunchOptions,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ProofLaunchOptions"),
+    :class => SunDawg::Responsys::ProofLaunchOptions,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ProofLaunchOptions"),
     :schema_element => [
       ["proofEmailAddress", "SOAP::SOAPString"],
-      ["proofLaunchType", "ProofLaunchType"]
+      ["proofLaunchType", "SunDawg::Responsys::ProofLaunchType"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => LaunchPreferences,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LaunchPreferences"),
+    :class => SunDawg::Responsys::LaunchPreferences,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LaunchPreferences"),
     :schema_element => [
       ["enableLimit", "SOAP::SOAPBoolean"],
       ["recipientLimit", "SOAP::SOAPLong"],
@@ -179,21 +179,21 @@ module DefaultMappingRegistry
       ["samplingNthOffset", "SOAP::SOAPInt"],
       ["enableProgressAlerts", "SOAP::SOAPBoolean"],
       ["progressEmailAddresses", "SOAP::SOAPString"],
-      ["progressChunk", "ProgressChunk"]
+      ["progressChunk", "SunDawg::Responsys::ProgressChunk"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => LaunchResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LaunchResult"),
+    :class => SunDawg::Responsys::LaunchResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LaunchResult"),
     :schema_element => [
       ["launchId", "SOAP::SOAPLong"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => LaunchStatusResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LaunchStatusResult"),
+    :class => SunDawg::Responsys::LaunchStatusResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LaunchStatusResult"),
     :schema_element => [
       ["launchId", "SOAP::SOAPLong"],
       ["launchState", "SOAP::SOAPString"],
@@ -204,49 +204,49 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => Field,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "Field"),
+    :class => SunDawg::Responsys::Field,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::Field"),
     :schema_element => [
       ["fieldName", "SOAP::SOAPString"],
-      ["fieldType", "FieldType"],
+      ["fieldType", "SunDawg::Responsys::FieldType"],
       ["custom", "SOAP::SOAPBoolean"],
       ["dataExtractionKey", "SOAP::SOAPBoolean"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => ListMergeRule,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ListMergeRule"),
+    :class => SunDawg::Responsys::ListMergeRule,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ListMergeRule"),
     :schema_element => [
       ["insertOnNoMatch", "SOAP::SOAPBoolean"],
-      ["updateOnMatch", "UpdateOnMatch"],
+      ["updateOnMatch", "SunDawg::Responsys::UpdateOnMatch"],
       ["matchColumnName1", "SOAP::SOAPString"],
       ["matchColumnName2", "SOAP::SOAPString"],
       ["matchColumnName3", "SOAP::SOAPString"],
-      ["matchOperator", "MatchOperator"],
+      ["matchOperator", "SunDawg::Responsys::MatchOperator"],
       ["optinValue", "SOAP::SOAPString"],
       ["optoutValue", "SOAP::SOAPString"],
       ["htmlValue", "SOAP::SOAPString"],
       ["textValue", "SOAP::SOAPString"],
       ["rejectRecordIfChannelEmpty", "SOAP::SOAPString"],
-      ["defaultPermissionStatus", "PermissionStatus"]
+      ["defaultPermissionStatus", "SunDawg::Responsys::PermissionStatus"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => DeleteResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "DeleteResult"),
+    :class => SunDawg::Responsys::DeleteResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::DeleteResult"),
     :schema_element => [
       ["id", "SOAP::SOAPString"],
       ["success", "SOAP::SOAPBoolean"],
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["errorMessage", "SOAP::SOAPString"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => GetUpdatedResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "GetUpdatedResult"),
+    :class => SunDawg::Responsys::GetUpdatedResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::GetUpdatedResult"),
     :schema_element => [
       ["id", "SOAP::SOAPLong[]", [1, nil]],
       ["latestDateCovered", "SOAP::SOAPDateTime"]
@@ -254,33 +254,33 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => Record,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "Record"),
+    :class => SunDawg::Responsys::Record,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::Record"),
     :schema_element => [
       ["fieldValues", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   EncodedRegistry.register(
-    :class => RetrieveResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RetrieveResult"),
+    :class => SunDawg::Responsys::RetrieveResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RetrieveResult"),
     :schema_element => [
-      ["recordData", "RecordData"]
+      ["recordData", "SunDawg::Responsys::RecordData"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => RecordData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecordData"),
+    :class => SunDawg::Responsys::RecordData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecordData"),
     :schema_element => [
       ["fieldNames", "SOAP::SOAPString[]", [1, nil]],
-      ["records", "Record[]", [1, nil]]
+      ["records", "SunDawg::Responsys::Record[]", [1, nil]]
     ]
   )
 
   EncodedRegistry.register(
-    :class => MergeResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "MergeResult"),
+    :class => SunDawg::Responsys::MergeResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::MergeResult"),
     :schema_element => [
       ["insertCount", "SOAP::SOAPLong"],
       ["updateCount", "SOAP::SOAPLong"],
@@ -291,8 +291,8 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ImageData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ImageData"),
+    :class => SunDawg::Responsys::ImageData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ImageData"),
     :schema_element => [
       ["image", "SOAP::SOAPBase64"],
       ["imageName", "SOAP::SOAPString"]
@@ -300,34 +300,34 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ContentResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ContentResult"),
+    :class => SunDawg::Responsys::ContentResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ContentResult"),
     :schema_element => [
       ["content", "SOAP::SOAPString"],
-      ["format", "ContentFormat"],
-      ["characterEncoding", "CharacterEncoding"]
+      ["format", "SunDawg::Responsys::ContentFormat"],
+      ["characterEncoding", "SunDawg::Responsys::CharacterEncoding"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => DescribeObjectResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "DescribeObjectResult"),
+    :class => SunDawg::Responsys::DescribeObjectResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::DescribeObjectResult"),
     :schema_element => [
       ["createdBy", "SOAP::SOAPString"],
       ["createdDate", "SOAP::SOAPDateTime"],
       ["lastModifiedBy", "SOAP::SOAPString"],
       ["lastModifiedDate", "SOAP::SOAPDateTime"],
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["errorMessage", "SOAP::SOAPString"],
-      ["fields", "Field[]", [1, nil]],
-      ["objectType", "FolderObjectType"],
+      ["fields", "SunDawg::Responsys::Field[]", [1, nil]],
+      ["objectType", "SunDawg::Responsys::FolderObjectType"],
       ["any", [nil, XSD::QName.new(NsXMLSchema, "anyType")]]
     ]
   )
 
   EncodedRegistry.register(
-    :class => RunJobResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RunJobResult"),
+    :class => SunDawg::Responsys::RunJobResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RunJobResult"),
     :schema_element => [
       ["success", "SOAP::SOAPBoolean"],
       ["errorMessage", "SOAP::SOAPString"],
@@ -336,10 +336,10 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => JobRunStatusResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "JobRunStatusResult"),
+    :class => SunDawg::Responsys::JobRunStatusResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::JobRunStatusResult"),
     :schema_element => [
-      ["jobRunStatus", "JobRunStatus"],
+      ["jobRunStatus", "SunDawg::Responsys::JobRunStatus"],
       ["errorMessage", "SOAP::SOAPString"],
       ["recordsProcessed", "SOAP::SOAPLong"],
       ["recordsAdded", "SOAP::SOAPLong"],
@@ -350,8 +350,8 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ConnectJob,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ConnectJob"),
+    :class => SunDawg::Responsys::ConnectJob,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ConnectJob"),
     :schema_element => [
       ["jobId", "SOAP::SOAPLong"],
       ["jobName", "SOAP::SOAPString"],
@@ -365,20 +365,20 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ConnectJobRun,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ConnectJobRun"),
+    :class => SunDawg::Responsys::ConnectJobRun,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ConnectJobRun"),
     :schema_element => [
       ["jobRunId", "SOAP::SOAPLong"],
       ["jobName", "SOAP::SOAPString"],
       ["jobStartTime", "SOAP::SOAPDateTime"],
       ["durationInSeconds", "SOAP::SOAPLong"],
-      ["jobRunStatus", "JobRunStatus"]
+      ["jobRunStatus", "SunDawg::Responsys::JobRunStatus"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => ConnectJobRunLog,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ConnectJobRunLog"),
+    :class => SunDawg::Responsys::ConnectJobRunLog,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ConnectJobRunLog"),
     :schema_element => [
       ["logLevel", "SOAP::SOAPString"],
       ["logTime", "SOAP::SOAPDateTime"],
@@ -387,8 +387,8 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => RecipientResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecipientResult"),
+    :class => SunDawg::Responsys::RecipientResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecipientResult"),
     :schema_element => [
       ["recipientId", "SOAP::SOAPLong"],
       ["errorMessage", "SOAP::SOAPString"]
@@ -396,115 +396,115 @@ module DefaultMappingRegistry
   )
 
   EncodedRegistry.register(
-    :class => ApiFault,
+    :class => SunDawg::Responsys::ApiFault,
     :schema_type => XSD::QName.new(NsFaultWsRsysCom, "ApiFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   EncodedRegistry.register(
-    :class => FolderObjectType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FolderObjectType")
+    :class => SunDawg::Responsys::FolderObjectType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FolderObjectType")
   )
 
   EncodedRegistry.register(
-    :class => EmailFormat,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "EmailFormat")
+    :class => SunDawg::Responsys::EmailFormat,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::EmailFormat")
   )
 
   EncodedRegistry.register(
-    :class => RecipientLocale,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecipientLocale")
+    :class => SunDawg::Responsys::RecipientLocale,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecipientLocale")
   )
 
   EncodedRegistry.register(
-    :class => CharacterEncoding,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CharacterEncoding")
+    :class => SunDawg::Responsys::CharacterEncoding,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CharacterEncoding")
   )
 
   EncodedRegistry.register(
-    :class => CampaignType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CampaignType")
+    :class => SunDawg::Responsys::CampaignType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CampaignType")
   )
 
   EncodedRegistry.register(
-    :class => UnsubscribeOption,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "UnsubscribeOption")
+    :class => SunDawg::Responsys::UnsubscribeOption,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::UnsubscribeOption")
   )
 
   EncodedRegistry.register(
-    :class => AutoCloseOption,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "AutoCloseOption")
+    :class => SunDawg::Responsys::AutoCloseOption,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::AutoCloseOption")
   )
 
   EncodedRegistry.register(
-    :class => CampaignPurpose,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CampaignPurpose")
+    :class => SunDawg::Responsys::CampaignPurpose,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CampaignPurpose")
   )
 
   EncodedRegistry.register(
-    :class => ProofLaunchType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ProofLaunchType")
+    :class => SunDawg::Responsys::ProofLaunchType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ProofLaunchType")
   )
 
   EncodedRegistry.register(
-    :class => ProgressChunk,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ProgressChunk")
+    :class => SunDawg::Responsys::ProgressChunk,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ProgressChunk")
   )
 
   EncodedRegistry.register(
-    :class => FieldType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FieldType")
+    :class => SunDawg::Responsys::FieldType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FieldType")
   )
 
   EncodedRegistry.register(
-    :class => UpdateOnMatch,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "UpdateOnMatch")
+    :class => SunDawg::Responsys::UpdateOnMatch,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::UpdateOnMatch")
   )
 
   EncodedRegistry.register(
-    :class => MatchOperator,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "MatchOperator")
+    :class => SunDawg::Responsys::MatchOperator,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::MatchOperator")
   )
 
   EncodedRegistry.register(
-    :class => PermissionStatus,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "PermissionStatus")
+    :class => SunDawg::Responsys::PermissionStatus,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::PermissionStatus")
   )
 
   EncodedRegistry.register(
-    :class => QueryColumn,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "QueryColumn")
+    :class => SunDawg::Responsys::QueryColumn,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::QueryColumn")
   )
 
   EncodedRegistry.register(
-    :class => ContentFormat,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ContentFormat")
+    :class => SunDawg::Responsys::ContentFormat,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ContentFormat")
   )
 
   EncodedRegistry.register(
-    :class => JobRunStatus,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "JobRunStatus")
+    :class => SunDawg::Responsys::JobRunStatus,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::JobRunStatus")
   )
 
   EncodedRegistry.register(
-    :class => ExceptionCode,
-    :schema_type => XSD::QName.new(NsFaultWsRsysCom, "ExceptionCode")
+    :class => SunDawg::Responsys::ExceptionCode,
+    :schema_type => XSD::QName.new(NsFaultWsRsysCom, "SunDawg::Responsys::ExceptionCode")
   )
 
   LiteralRegistry.register(
-    :class => LoginResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LoginResult"),
+    :class => SunDawg::Responsys::LoginResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LoginResult"),
     :schema_element => [
       ["sessionId", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ServerAuthResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ServerAuthResult"),
+    :class => SunDawg::Responsys::ServerAuthResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ServerAuthResult"),
     :schema_element => [
       ["authSessionId", "SOAP::SOAPString"],
       ["encryptedClientChallenge", "SOAP::SOAPByte[]", [1, nil]],
@@ -513,16 +513,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => FolderResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FolderResult"),
+    :class => SunDawg::Responsys::FolderResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FolderResult"),
     :schema_element => [
       ["name", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => InteractObject,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "InteractObject"),
+    :class => SunDawg::Responsys::InteractObject,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::InteractObject"),
     :schema_element => [
       ["folderName", "SOAP::SOAPString"],
       ["objectName", "SOAP::SOAPString"]
@@ -530,32 +530,32 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => FolderObjectResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FolderObjectResult"),
+    :class => SunDawg::Responsys::FolderObjectResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FolderObjectResult"),
     :schema_element => [
       ["id", "SOAP::SOAPLong"],
-      ["name", "InteractObject"],
-      ["type", "FolderObjectType"],
+      ["name", "SunDawg::Responsys::InteractObject"],
+      ["type", "SunDawg::Responsys::FolderObjectType"],
       ["subType", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => Recipient,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "Recipient"),
+    :class => SunDawg::Responsys::Recipient,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::Recipient"),
     :schema_element => [
-      ["listName", "InteractObject"],
+      ["listName", "SunDawg::Responsys::InteractObject"],
       ["recipientId", "SOAP::SOAPLong"],
       ["customerId", "SOAP::SOAPString"],
       ["emailAddress", "SOAP::SOAPString"],
       ["mobileNumber", "SOAP::SOAPString"],
-      ["emailFormat", "EmailFormat"]
+      ["emailFormat", "SunDawg::Responsys::EmailFormat"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => OptionalData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "OptionalData"),
+    :class => SunDawg::Responsys::OptionalData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::OptionalData"),
     :schema_element => [
       ["name", "SOAP::SOAPString"],
       ["value", "SOAP::SOAPString"]
@@ -563,49 +563,49 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CampaignProperties,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CampaignProperties"),
+    :class => SunDawg::Responsys::CampaignProperties,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CampaignProperties"),
     :schema_element => [
-      ["campaign", "InteractObject"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
       ["campaignId", "SOAP::SOAPLong"],
-      ["campaignType", "CampaignType"],
+      ["campaignType", "SunDawg::Responsys::CampaignType"],
       ["description", "SOAP::SOAPString"],
       ["marketingProgram", "SOAP::SOAPString"],
       ["marketingStrategy", "SOAP::SOAPString"],
-      ["list", "InteractObject"],
-      ["refiningFilters", "InteractObject[]", [1, nil]],
-      ["refiningDataSource", "InteractObject"],
-      ["governanceFilter", "InteractObject"],
-      ["supplementalCampaignDataSources", "InteractObject[]", [1, nil]],
-      ["suppressionLists", "InteractObject[]", [1, nil]],
-      ["supplementalProofDataSources", "InteractObject[]", [1, nil]],
-      ["supplementalSeedDataSources", "InteractObject[]", [1, nil]],
-      ["proofList", "InteractObject"],
-      ["seedList", "InteractObject"],
-      ["segmentation", "InteractObject[]", [1, nil]],
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["refiningFilters", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["refiningDataSource", "SunDawg::Responsys::InteractObject"],
+      ["governanceFilter", "SunDawg::Responsys::InteractObject"],
+      ["supplementalCampaignDataSources", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["suppressionLists", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["supplementalProofDataSources", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["supplementalSeedDataSources", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["proofList", "SunDawg::Responsys::InteractObject"],
+      ["seedList", "SunDawg::Responsys::InteractObject"],
+      ["segmentation", "SunDawg::Responsys::InteractObject[]", [1, nil]],
       ["fromName", "SOAP::SOAPString"],
       ["fromEmail", "SOAP::SOAPString"],
       ["replyToEmail", "SOAP::SOAPString"],
       ["bccEmail", "SOAP::SOAPString"],
       ["subject", "SOAP::SOAPString"],
-      ["htmlMessage", "InteractObject"],
-      ["textMessage", "InteractObject"],
+      ["htmlMessage", "SunDawg::Responsys::InteractObject"],
+      ["textMessage", "SunDawg::Responsys::InteractObject"],
       ["enableLinkTracking", "SOAP::SOAPBoolean"],
-      ["linkTable", "InteractObject"],
+      ["linkTable", "SunDawg::Responsys::InteractObject"],
       ["enableExternalTracking", "SOAP::SOAPBoolean"],
-      ["externalTrackingParams", "OptionalData[]", [1, nil]],
-      ["attachments", "InteractObject[]", [1, nil]],
-      ["campaignVariables", "OptionalData[]", [1, nil]],
-      ["campaignPurpose", "CampaignPurpose"],
+      ["externalTrackingParams", "SunDawg::Responsys::OptionalData[]", [1, nil]],
+      ["attachments", "SunDawg::Responsys::InteractObject[]", [1, nil]],
+      ["campaignVariables", "SunDawg::Responsys::OptionalData[]", [1, nil]],
+      ["campaignPurpose", "SunDawg::Responsys::CampaignPurpose"],
       ["useUTF8", "SOAP::SOAPBoolean"],
-      ["locale", "RecipientLocale"],
+      ["locale", "SunDawg::Responsys::RecipientLocale"],
       ["trackHtmlOpens", "SOAP::SOAPBoolean"],
       ["trackConversions", "SOAP::SOAPBoolean"],
       ["sendTextIfHTMLUnknown", "SOAP::SOAPBoolean"],
       ["segmentTrackingColumnName", "SOAP::SOAPString"],
-      ["unsubscribeOption", "UnsubscribeOption"],
+      ["unsubscribeOption", "SunDawg::Responsys::UnsubscribeOption"],
       ["unsubscribeForm", "SOAP::SOAPString"],
-      ["autoCloseOption", "AutoCloseOption"],
+      ["autoCloseOption", "SunDawg::Responsys::AutoCloseOption"],
       ["autoCloseValue", "SOAP::SOAPString"],
       ["closedCampaignURL", "SOAP::SOAPString"],
       ["externalCampaignCode", "SOAP::SOAPString"],
@@ -614,17 +614,17 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => RecipientData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecipientData"),
+    :class => SunDawg::Responsys::RecipientData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecipientData"),
     :schema_element => [
-      ["recipient", "Recipient"],
-      ["optionalData", "OptionalData[]", [1, nil]]
+      ["recipient", "SunDawg::Responsys::Recipient"],
+      ["optionalData", "SunDawg::Responsys::OptionalData[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TriggerResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "TriggerResult"),
+    :class => SunDawg::Responsys::TriggerResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::TriggerResult"),
     :schema_element => [
       ["recipientId", "SOAP::SOAPLong"],
       ["success", "SOAP::SOAPBoolean"],
@@ -633,8 +633,8 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CustomEvent,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CustomEvent"),
+    :class => SunDawg::Responsys::CustomEvent,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CustomEvent"),
     :schema_element => [
       ["eventName", "SOAP::SOAPString"],
       ["eventId", "SOAP::SOAPLong"],
@@ -645,17 +645,17 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ProofLaunchOptions,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ProofLaunchOptions"),
+    :class => SunDawg::Responsys::ProofLaunchOptions,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ProofLaunchOptions"),
     :schema_element => [
       ["proofEmailAddress", "SOAP::SOAPString"],
-      ["proofLaunchType", "ProofLaunchType"]
+      ["proofLaunchType", "SunDawg::Responsys::ProofLaunchType"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LaunchPreferences,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LaunchPreferences"),
+    :class => SunDawg::Responsys::LaunchPreferences,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LaunchPreferences"),
     :schema_element => [
       ["enableLimit", "SOAP::SOAPBoolean"],
       ["recipientLimit", "SOAP::SOAPLong"],
@@ -665,21 +665,21 @@ module DefaultMappingRegistry
       ["samplingNthOffset", "SOAP::SOAPInt"],
       ["enableProgressAlerts", "SOAP::SOAPBoolean"],
       ["progressEmailAddresses", "SOAP::SOAPString"],
-      ["progressChunk", "ProgressChunk"]
+      ["progressChunk", "SunDawg::Responsys::ProgressChunk"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LaunchResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LaunchResult"),
+    :class => SunDawg::Responsys::LaunchResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LaunchResult"),
     :schema_element => [
       ["launchId", "SOAP::SOAPLong"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LaunchStatusResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "LaunchStatusResult"),
+    :class => SunDawg::Responsys::LaunchStatusResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::LaunchStatusResult"),
     :schema_element => [
       ["launchId", "SOAP::SOAPLong"],
       ["launchState", "SOAP::SOAPString"],
@@ -690,49 +690,49 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => Field,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "Field"),
+    :class => SunDawg::Responsys::Field,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::Field"),
     :schema_element => [
       ["fieldName", "SOAP::SOAPString"],
-      ["fieldType", "FieldType"],
+      ["fieldType", "SunDawg::Responsys::FieldType"],
       ["custom", "SOAP::SOAPBoolean"],
       ["dataExtractionKey", "SOAP::SOAPBoolean"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ListMergeRule,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ListMergeRule"),
+    :class => SunDawg::Responsys::ListMergeRule,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ListMergeRule"),
     :schema_element => [
       ["insertOnNoMatch", "SOAP::SOAPBoolean"],
-      ["updateOnMatch", "UpdateOnMatch"],
+      ["updateOnMatch", "SunDawg::Responsys::UpdateOnMatch"],
       ["matchColumnName1", "SOAP::SOAPString"],
       ["matchColumnName2", "SOAP::SOAPString"],
       ["matchColumnName3", "SOAP::SOAPString"],
-      ["matchOperator", "MatchOperator"],
+      ["matchOperator", "SunDawg::Responsys::MatchOperator"],
       ["optinValue", "SOAP::SOAPString"],
       ["optoutValue", "SOAP::SOAPString"],
       ["htmlValue", "SOAP::SOAPString"],
       ["textValue", "SOAP::SOAPString"],
       ["rejectRecordIfChannelEmpty", "SOAP::SOAPString"],
-      ["defaultPermissionStatus", "PermissionStatus"]
+      ["defaultPermissionStatus", "SunDawg::Responsys::PermissionStatus"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "DeleteResult"),
+    :class => SunDawg::Responsys::DeleteResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::DeleteResult"),
     :schema_element => [
       ["id", "SOAP::SOAPString"],
       ["success", "SOAP::SOAPBoolean"],
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["errorMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetUpdatedResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "GetUpdatedResult"),
+    :class => SunDawg::Responsys::GetUpdatedResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::GetUpdatedResult"),
     :schema_element => [
       ["id", "SOAP::SOAPLong[]", [1, nil]],
       ["latestDateCovered", "SOAP::SOAPDateTime"]
@@ -740,33 +740,33 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => Record,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "Record"),
+    :class => SunDawg::Responsys::Record,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::Record"),
     :schema_element => [
       ["fieldValues", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RetrieveResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RetrieveResult"),
+    :class => SunDawg::Responsys::RetrieveResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RetrieveResult"),
     :schema_element => [
-      ["recordData", "RecordData"]
+      ["recordData", "SunDawg::Responsys::RecordData"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RecordData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecordData"),
+    :class => SunDawg::Responsys::RecordData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecordData"),
     :schema_element => [
       ["fieldNames", "SOAP::SOAPString[]", [1, nil]],
-      ["records", "Record[]", [1, nil]]
+      ["records", "SunDawg::Responsys::Record[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "MergeResult"),
+    :class => SunDawg::Responsys::MergeResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::MergeResult"),
     :schema_element => [
       ["insertCount", "SOAP::SOAPLong"],
       ["updateCount", "SOAP::SOAPLong"],
@@ -777,8 +777,8 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ImageData,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ImageData"),
+    :class => SunDawg::Responsys::ImageData,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ImageData"),
     :schema_element => [
       ["image", "SOAP::SOAPBase64"],
       ["imageName", "SOAP::SOAPString"]
@@ -786,34 +786,34 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ContentResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ContentResult"),
+    :class => SunDawg::Responsys::ContentResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ContentResult"),
     :schema_element => [
       ["content", "SOAP::SOAPString"],
-      ["format", "ContentFormat"],
-      ["characterEncoding", "CharacterEncoding"]
+      ["format", "SunDawg::Responsys::ContentFormat"],
+      ["characterEncoding", "SunDawg::Responsys::CharacterEncoding"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DescribeObjectResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "DescribeObjectResult"),
+    :class => SunDawg::Responsys::DescribeObjectResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::DescribeObjectResult"),
     :schema_element => [
       ["createdBy", "SOAP::SOAPString"],
       ["createdDate", "SOAP::SOAPDateTime"],
       ["lastModifiedBy", "SOAP::SOAPString"],
       ["lastModifiedDate", "SOAP::SOAPDateTime"],
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["errorMessage", "SOAP::SOAPString"],
-      ["fields", "Field[]", [1, nil]],
-      ["objectType", "FolderObjectType"],
+      ["fields", "SunDawg::Responsys::Field[]", [1, nil]],
+      ["objectType", "SunDawg::Responsys::FolderObjectType"],
       ["any", [nil, XSD::QName.new(NsXMLSchema, "anyType")]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RunJobResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RunJobResult"),
+    :class => SunDawg::Responsys::RunJobResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RunJobResult"),
     :schema_element => [
       ["success", "SOAP::SOAPBoolean"],
       ["errorMessage", "SOAP::SOAPString"],
@@ -822,10 +822,10 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => JobRunStatusResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "JobRunStatusResult"),
+    :class => SunDawg::Responsys::JobRunStatusResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::JobRunStatusResult"),
     :schema_element => [
-      ["jobRunStatus", "JobRunStatus"],
+      ["jobRunStatus", "SunDawg::Responsys::JobRunStatus"],
       ["errorMessage", "SOAP::SOAPString"],
       ["recordsProcessed", "SOAP::SOAPLong"],
       ["recordsAdded", "SOAP::SOAPLong"],
@@ -836,8 +836,8 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ConnectJob,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ConnectJob"),
+    :class => SunDawg::Responsys::ConnectJob,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ConnectJob"),
     :schema_element => [
       ["jobId", "SOAP::SOAPLong"],
       ["jobName", "SOAP::SOAPString"],
@@ -851,20 +851,20 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ConnectJobRun,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ConnectJobRun"),
+    :class => SunDawg::Responsys::ConnectJobRun,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ConnectJobRun"),
     :schema_element => [
       ["jobRunId", "SOAP::SOAPLong"],
       ["jobName", "SOAP::SOAPString"],
       ["jobStartTime", "SOAP::SOAPDateTime"],
       ["durationInSeconds", "SOAP::SOAPLong"],
-      ["jobRunStatus", "JobRunStatus"]
+      ["jobRunStatus", "SunDawg::Responsys::JobRunStatus"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ConnectJobRunLog,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ConnectJobRunLog"),
+    :class => SunDawg::Responsys::ConnectJobRunLog,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ConnectJobRunLog"),
     :schema_element => [
       ["logLevel", "SOAP::SOAPString"],
       ["logTime", "SOAP::SOAPDateTime"],
@@ -873,8 +873,8 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => RecipientResult,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecipientResult"),
+    :class => SunDawg::Responsys::RecipientResult,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecipientResult"),
     :schema_element => [
       ["recipientId", "SOAP::SOAPLong"],
       ["errorMessage", "SOAP::SOAPString"]
@@ -882,106 +882,106 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ApiFault,
+    :class => SunDawg::Responsys::ApiFault,
     :schema_type => XSD::QName.new(NsFaultWsRsysCom, "ApiFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => FolderObjectType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FolderObjectType")
+    :class => SunDawg::Responsys::FolderObjectType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FolderObjectType")
   )
 
   LiteralRegistry.register(
-    :class => EmailFormat,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "EmailFormat")
+    :class => SunDawg::Responsys::EmailFormat,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::EmailFormat")
   )
 
   LiteralRegistry.register(
-    :class => RecipientLocale,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "RecipientLocale")
+    :class => SunDawg::Responsys::RecipientLocale,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::RecipientLocale")
   )
 
   LiteralRegistry.register(
-    :class => CharacterEncoding,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CharacterEncoding")
+    :class => SunDawg::Responsys::CharacterEncoding,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CharacterEncoding")
   )
 
   LiteralRegistry.register(
-    :class => CampaignType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CampaignType")
+    :class => SunDawg::Responsys::CampaignType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CampaignType")
   )
 
   LiteralRegistry.register(
-    :class => UnsubscribeOption,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "UnsubscribeOption")
+    :class => SunDawg::Responsys::UnsubscribeOption,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::UnsubscribeOption")
   )
 
   LiteralRegistry.register(
-    :class => AutoCloseOption,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "AutoCloseOption")
+    :class => SunDawg::Responsys::AutoCloseOption,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::AutoCloseOption")
   )
 
   LiteralRegistry.register(
-    :class => CampaignPurpose,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "CampaignPurpose")
+    :class => SunDawg::Responsys::CampaignPurpose,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::CampaignPurpose")
   )
 
   LiteralRegistry.register(
-    :class => ProofLaunchType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ProofLaunchType")
+    :class => SunDawg::Responsys::ProofLaunchType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ProofLaunchType")
   )
 
   LiteralRegistry.register(
-    :class => ProgressChunk,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ProgressChunk")
+    :class => SunDawg::Responsys::ProgressChunk,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ProgressChunk")
   )
 
   LiteralRegistry.register(
-    :class => FieldType,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "FieldType")
+    :class => SunDawg::Responsys::FieldType,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::FieldType")
   )
 
   LiteralRegistry.register(
-    :class => UpdateOnMatch,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "UpdateOnMatch")
+    :class => SunDawg::Responsys::UpdateOnMatch,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::UpdateOnMatch")
   )
 
   LiteralRegistry.register(
-    :class => MatchOperator,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "MatchOperator")
+    :class => SunDawg::Responsys::MatchOperator,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::MatchOperator")
   )
 
   LiteralRegistry.register(
-    :class => PermissionStatus,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "PermissionStatus")
+    :class => SunDawg::Responsys::PermissionStatus,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::PermissionStatus")
   )
 
   LiteralRegistry.register(
-    :class => QueryColumn,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "QueryColumn")
+    :class => SunDawg::Responsys::QueryColumn,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::QueryColumn")
   )
 
   LiteralRegistry.register(
-    :class => ContentFormat,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "ContentFormat")
+    :class => SunDawg::Responsys::ContentFormat,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::ContentFormat")
   )
 
   LiteralRegistry.register(
-    :class => JobRunStatus,
-    :schema_type => XSD::QName.new(NsWsRsysCom, "JobRunStatus")
+    :class => SunDawg::Responsys::JobRunStatus,
+    :schema_type => XSD::QName.new(NsWsRsysCom, "SunDawg::Responsys::JobRunStatus")
   )
 
   LiteralRegistry.register(
-    :class => ExceptionCode,
-    :schema_type => XSD::QName.new(NsFaultWsRsysCom, "ExceptionCode")
+    :class => SunDawg::Responsys::ExceptionCode,
+    :schema_type => XSD::QName.new(NsFaultWsRsysCom, "SunDawg::Responsys::ExceptionCode")
   )
 
   LiteralRegistry.register(
-    :class => Login,
+    :class => SunDawg::Responsys::Login,
     :schema_name => XSD::QName.new(NsWsRsysCom, "login"),
     :schema_element => [
       ["username", "SOAP::SOAPString"],
@@ -990,15 +990,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => LoginResponse,
+    :class => SunDawg::Responsys::LoginResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "loginResponse"),
     :schema_element => [
-      ["result", "LoginResult"]
+      ["result", "SunDawg::Responsys::LoginResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => AuthenticateServer,
+    :class => SunDawg::Responsys::AuthenticateServer,
     :schema_name => XSD::QName.new(NsWsRsysCom, "authenticateServer"),
     :schema_element => [
       ["username", "SOAP::SOAPString"],
@@ -1007,15 +1007,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => AuthenticateServerResponse,
+    :class => SunDawg::Responsys::AuthenticateServerResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "authenticateServerResponse"),
     :schema_element => [
-      ["result", "ServerAuthResult"]
+      ["result", "SunDawg::Responsys::ServerAuthResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LoginWithCertificate,
+    :class => SunDawg::Responsys::LoginWithCertificate,
     :schema_name => XSD::QName.new(NsWsRsysCom, "loginWithCertificate"),
     :schema_element => [
       ["encryptedServerChallenge", "SOAP::SOAPByte[]", [1, nil]]
@@ -1023,21 +1023,21 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => LoginWithCertificateResponse,
+    :class => SunDawg::Responsys::LoginWithCertificateResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "loginWithCertificateResponse"),
     :schema_element => [
-      ["result", "LoginResult"]
+      ["result", "SunDawg::Responsys::LoginResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => Logout,
+    :class => SunDawg::Responsys::Logout,
     :schema_name => XSD::QName.new(NsWsRsysCom, "logout"),
     :schema_element => []
   )
 
   LiteralRegistry.register(
-    :class => LogoutResponse,
+    :class => SunDawg::Responsys::LogoutResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "logoutResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1045,7 +1045,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CreateFolder,
+    :class => SunDawg::Responsys::CreateFolder,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createFolder"),
     :schema_element => [
       ["folderName", "SOAP::SOAPString"]
@@ -1053,7 +1053,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CreateFolderResponse,
+    :class => SunDawg::Responsys::CreateFolderResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createFolderResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1061,7 +1061,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteFolder,
+    :class => SunDawg::Responsys::DeleteFolder,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteFolder"),
     :schema_element => [
       ["folderName", "SOAP::SOAPString"]
@@ -1069,7 +1069,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteFolderResponse,
+    :class => SunDawg::Responsys::DeleteFolderResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteFolderResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1077,38 +1077,38 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ListFolders,
+    :class => SunDawg::Responsys::ListFolders,
     :schema_name => XSD::QName.new(NsWsRsysCom, "listFolders"),
     :schema_element => []
   )
 
   LiteralRegistry.register(
-    :class => ListFoldersResponse,
+    :class => SunDawg::Responsys::ListFoldersResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "listFoldersResponse"),
     :schema_element => [
-      ["result", "FolderResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::FolderResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ListFolderObjects,
+    :class => SunDawg::Responsys::ListFolderObjects,
     :schema_name => XSD::QName.new(NsWsRsysCom, "listFolderObjects"),
     :schema_element => [
       ["folderName", "SOAP::SOAPString"],
-      ["type", "FolderObjectType"]
+      ["type", "SunDawg::Responsys::FolderObjectType"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ListFolderObjectsResponse,
+    :class => SunDawg::Responsys::ListFolderObjectsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "listFolderObjectsResponse"),
     :schema_element => [
-      ["result", "FolderObjectResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::FolderObjectResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => SessionHeader,
+    :class => SunDawg::Responsys::SessionHeader,
     :schema_name => XSD::QName.new(NsWsRsysCom, "SessionHeader"),
     :schema_element => [
       ["sessionId", "SOAP::SOAPString"]
@@ -1116,7 +1116,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => AuthSessionHeader,
+    :class => SunDawg::Responsys::AuthSessionHeader,
     :schema_name => XSD::QName.new(NsWsRsysCom, "AuthSessionHeader"),
     :schema_element => [
       ["authSessionId", "SOAP::SOAPString"]
@@ -1124,50 +1124,50 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => TriggerCampaignMessage,
+    :class => SunDawg::Responsys::TriggerCampaignMessage,
     :schema_name => XSD::QName.new(NsWsRsysCom, "triggerCampaignMessage"),
     :schema_element => [
-      ["campaign", "InteractObject"],
-      ["recipientData", "RecipientData[]", [1, nil]]
+      ["campaign", "SunDawg::Responsys::InteractObject"],
+      ["recipientData", "SunDawg::Responsys::RecipientData[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TriggerCampaignMessageResponse,
+    :class => SunDawg::Responsys::TriggerCampaignMessageResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "triggerCampaignMessageResponse"),
     :schema_element => [
-      ["result", "TriggerResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::TriggerResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TriggerCustomEvent,
+    :class => SunDawg::Responsys::TriggerCustomEvent,
     :schema_name => XSD::QName.new(NsWsRsysCom, "triggerCustomEvent"),
     :schema_element => [
-      ["customEvent", "CustomEvent"],
-      ["recipientData", "RecipientData[]", [1, nil]]
+      ["customEvent", "SunDawg::Responsys::CustomEvent"],
+      ["recipientData", "SunDawg::Responsys::RecipientData[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TriggerCustomEventResponse,
+    :class => SunDawg::Responsys::TriggerCustomEventResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "triggerCustomEventResponse"),
     :schema_element => [
-      ["result", "TriggerResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::TriggerResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateCampaign,
+    :class => SunDawg::Responsys::CreateCampaign,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createCampaign"),
     :schema_element => [
-      ["campaign", "InteractObject"],
-      ["campaignType", "CampaignType"]
+      ["campaign", "SunDawg::Responsys::InteractObject"],
+      ["campaignType", "SunDawg::Responsys::CampaignType"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateCampaignResponse,
+    :class => SunDawg::Responsys::CreateCampaignResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createCampaignResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPLong"]
@@ -1175,15 +1175,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => SetCampaignProperties,
+    :class => SunDawg::Responsys::SetCampaignProperties,
     :schema_name => XSD::QName.new(NsWsRsysCom, "setCampaignProperties"),
     :schema_element => [
-      ["campaignProperties", "CampaignProperties"]
+      ["campaignProperties", "SunDawg::Responsys::CampaignProperties"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => SetCampaignPropertiesResponse,
+    :class => SunDawg::Responsys::SetCampaignPropertiesResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "setCampaignPropertiesResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1191,53 +1191,53 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetCampaignProperties,
+    :class => SunDawg::Responsys::GetCampaignProperties,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getCampaignProperties"),
     :schema_element => [
-      ["campaign", "InteractObject"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
       ["campaignId", "SOAP::SOAPLong"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetCampaignPropertiesResponse,
+    :class => SunDawg::Responsys::GetCampaignPropertiesResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getCampaignPropertiesResponse"),
     :schema_element => [
-      ["result", "CampaignProperties"]
+      ["result", "SunDawg::Responsys::CampaignProperties"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LaunchCampaign,
+    :class => SunDawg::Responsys::LaunchCampaign,
     :schema_name => XSD::QName.new(NsWsRsysCom, "launchCampaign"),
     :schema_element => [
-      ["campaign", "InteractObject"],
-      ["proofLaunchOptions", "ProofLaunchOptions"],
-      ["launchPreferences", "LaunchPreferences"]
+      ["campaign", "SunDawg::Responsys::InteractObject"],
+      ["proofLaunchOptions", "SunDawg::Responsys::ProofLaunchOptions"],
+      ["launchPreferences", "SunDawg::Responsys::LaunchPreferences"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LaunchCampaignResponse,
+    :class => SunDawg::Responsys::LaunchCampaignResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "launchCampaignResponse"),
     :schema_element => [
-      ["result", "LaunchResult"]
+      ["result", "SunDawg::Responsys::LaunchResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ScheduleCampaignLaunch,
+    :class => SunDawg::Responsys::ScheduleCampaignLaunch,
     :schema_name => XSD::QName.new(NsWsRsysCom, "scheduleCampaignLaunch"),
     :schema_element => [
-      ["campaign", "InteractObject"],
-      ["proofLaunchOptions", "ProofLaunchOptions"],
-      ["launchPreferences", "LaunchPreferences"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
+      ["proofLaunchOptions", "SunDawg::Responsys::ProofLaunchOptions"],
+      ["launchPreferences", "SunDawg::Responsys::LaunchPreferences"],
       ["scheduleDate", "SOAP::SOAPDateTime"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ScheduleCampaignLaunchResponse,
+    :class => SunDawg::Responsys::ScheduleCampaignLaunchResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "scheduleCampaignLaunchResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1245,7 +1245,7 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetLaunchStatus,
+    :class => SunDawg::Responsys::GetLaunchStatus,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getLaunchStatus"),
     :schema_element => [
       ["launchIds", "SOAP::SOAPLong[]", [1, nil]]
@@ -1253,23 +1253,23 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetLaunchStatusResponse,
+    :class => SunDawg::Responsys::GetLaunchStatusResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getLaunchStatusResponse"),
     :schema_element => [
-      ["result", "LaunchStatusResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::LaunchStatusResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetCampaignId,
+    :class => SunDawg::Responsys::GetCampaignId,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getCampaignId"),
     :schema_element => [
-      ["campaign", "InteractObject"]
+      ["campaign", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetCampaignIdResponse,
+    :class => SunDawg::Responsys::GetCampaignIdResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getCampaignIdResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPLong"]
@@ -1277,15 +1277,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteCampaign,
+    :class => SunDawg::Responsys::DeleteCampaign,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteCampaign"),
     :schema_element => [
-      ["campaign", "InteractObject"]
+      ["campaign", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteCampaignResponse,
+    :class => SunDawg::Responsys::DeleteCampaignResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteCampaignResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1293,10 +1293,10 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetLaunchesForCampaign,
+    :class => SunDawg::Responsys::GetLaunchesForCampaign,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getLaunchesForCampaign"),
     :schema_element => [
-      ["campaign", "InteractObject"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
       ["campaignId", "SOAP::SOAPLong"],
       ["fromDate", "SOAP::SOAPDateTime"],
       ["toDate", "SOAP::SOAPDateTime"]
@@ -1304,38 +1304,38 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetLaunchesForCampaignResponse,
+    :class => SunDawg::Responsys::GetLaunchesForCampaignResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getLaunchesForCampaignResponse"),
     :schema_element => [
-      ["result", "LaunchStatusResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::LaunchStatusResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetOpenLaunches,
+    :class => SunDawg::Responsys::GetOpenLaunches,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getOpenLaunches"),
     :schema_element => []
   )
 
   LiteralRegistry.register(
-    :class => GetOpenLaunchesResponse,
+    :class => SunDawg::Responsys::GetOpenLaunchesResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getOpenLaunchesResponse"),
     :schema_element => [
-      ["result", "LaunchStatusResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::LaunchStatusResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CloseCampaign,
+    :class => SunDawg::Responsys::CloseCampaign,
     :schema_name => XSD::QName.new(NsWsRsysCom, "closeCampaign"),
     :schema_element => [
-      ["campaign", "InteractObject"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
       ["campaignId", "SOAP::SOAPLong"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CloseCampaignResponse,
+    :class => SunDawg::Responsys::CloseCampaignResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "closeCampaignResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1343,17 +1343,17 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => UnscheduleCampaignLaunch,
+    :class => SunDawg::Responsys::UnscheduleCampaignLaunch,
     :schema_name => XSD::QName.new(NsWsRsysCom, "unscheduleCampaignLaunch"),
     :schema_element => [
-      ["campaign", "InteractObject"],
+      ["campaign", "SunDawg::Responsys::InteractObject"],
       ["campaignId", "SOAP::SOAPLong"],
       ["scheduleDate", "SOAP::SOAPDateTime"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => UnscheduleCampaignLaunchResponse,
+    :class => SunDawg::Responsys::UnscheduleCampaignLaunchResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "unscheduleCampaignLaunchResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1361,17 +1361,17 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CreateList,
+    :class => SunDawg::Responsys::CreateList,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createList"),
     :schema_element => [
-      ["list", "InteractObject"],
+      ["list", "SunDawg::Responsys::InteractObject"],
       ["description", "SOAP::SOAPString"],
-      ["fields", "Field[]", [1, nil]]
+      ["fields", "SunDawg::Responsys::Field[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateListResponse,
+    :class => SunDawg::Responsys::CreateListResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createListResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1379,18 +1379,18 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ChangeListSchema,
+    :class => SunDawg::Responsys::ChangeListSchema,
     :schema_name => XSD::QName.new(NsWsRsysCom, "changeListSchema"),
     :schema_element => [
-      ["list", "InteractObject"],
-      ["addFields", "Field[]", [1, nil]],
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["addFields", "SunDawg::Responsys::Field[]", [1, nil]],
       ["removeFields", "SOAP::SOAPString[]", [1, nil]],
       ["renameFields", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ChangeListSchemaResponse,
+    :class => SunDawg::Responsys::ChangeListSchemaResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "changeListSchemaResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1398,15 +1398,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteList,
+    :class => SunDawg::Responsys::DeleteList,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteList"),
     :schema_element => [
-      ["list", "InteractObject"]
+      ["list", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteListResponse,
+    :class => SunDawg::Responsys::DeleteListResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteListResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1414,89 +1414,89 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => MergeListMembers,
+    :class => SunDawg::Responsys::MergeListMembers,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeListMembers"),
     :schema_element => [
-      ["list", "InteractObject"],
-      ["recordData", "RecordData"],
-      ["mergeRule", "ListMergeRule"]
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["recordData", "SunDawg::Responsys::RecordData"],
+      ["mergeRule", "SunDawg::Responsys::ListMergeRule"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeListMembersResponse,
+    :class => SunDawg::Responsys::MergeListMembersResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeListMembersResponse"),
     :schema_element => [
-      ["result", "MergeResult"]
+      ["result", "SunDawg::Responsys::MergeResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RetrieveListMembers,
+    :class => SunDawg::Responsys::RetrieveListMembers,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveListMembers"),
     :schema_element => [
-      ["list", "InteractObject"],
-      ["queryColumn", "QueryColumn"],
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["queryColumn", "SunDawg::Responsys::QueryColumn"],
       ["fieldList", "SOAP::SOAPString[]", [1, nil]],
       ["idsToRetrieve", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RetrieveListMembersResponse,
+    :class => SunDawg::Responsys::RetrieveListMembersResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveListMembersResponse"),
     :schema_element => [
-      ["result", "RetrieveResult"]
+      ["result", "SunDawg::Responsys::RetrieveResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteListMembers,
+    :class => SunDawg::Responsys::DeleteListMembers,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteListMembers"),
     :schema_element => [
-      ["list", "InteractObject"],
-      ["queryColumn", "QueryColumn"],
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["queryColumn", "SunDawg::Responsys::QueryColumn"],
       ["idsToDelete", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteListMembersResponse,
+    :class => SunDawg::Responsys::DeleteListMembersResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteListMembersResponse"),
     :schema_element => [
-      ["result", "DeleteResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::DeleteResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetUpdated,
+    :class => SunDawg::Responsys::GetUpdated,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getUpdated"),
     :schema_element => [
-      ["list", "InteractObject"],
+      ["list", "SunDawg::Responsys::InteractObject"],
       ["startTime", "SOAP::SOAPDateTime"],
       ["endTime", "SOAP::SOAPDateTime"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetUpdatedResponse,
+    :class => SunDawg::Responsys::GetUpdatedResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getUpdatedResponse"),
     :schema_element => [
-      ["result", "GetUpdatedResult"]
+      ["result", "SunDawg::Responsys::GetUpdatedResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateTable,
+    :class => SunDawg::Responsys::CreateTable,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createTable"),
     :schema_element => [
-      ["table", "InteractObject"],
-      ["fields", "Field[]", [1, nil]]
+      ["table", "SunDawg::Responsys::InteractObject"],
+      ["fields", "SunDawg::Responsys::Field[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateTableResponse,
+    :class => SunDawg::Responsys::CreateTableResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createTableResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1504,15 +1504,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteTable,
+    :class => SunDawg::Responsys::DeleteTable,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteTable"),
     :schema_element => [
-      ["table", "InteractObject"]
+      ["table", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteTableResponse,
+    :class => SunDawg::Responsys::DeleteTableResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteTableResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1520,17 +1520,17 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => ChangeTableSchema,
+    :class => SunDawg::Responsys::ChangeTableSchema,
     :schema_name => XSD::QName.new(NsWsRsysCom, "changeTableSchema"),
     :schema_element => [
-      ["table", "InteractObject"],
-      ["addFields", "Field[]", [1, nil]],
+      ["table", "SunDawg::Responsys::InteractObject"],
+      ["addFields", "SunDawg::Responsys::Field[]", [1, nil]],
       ["removeFields", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ChangeTableSchemaResponse,
+    :class => SunDawg::Responsys::ChangeTableSchemaResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "changeTableSchemaResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1538,28 +1538,28 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => MergeTableRecords,
+    :class => SunDawg::Responsys::MergeTableRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeTableRecords"),
     :schema_element => [
-      ["table", "InteractObject"],
-      ["recordData", "RecordData"],
+      ["table", "SunDawg::Responsys::InteractObject"],
+      ["recordData", "SunDawg::Responsys::RecordData"],
       ["matchColumnNames", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeTableRecordsResponse,
+    :class => SunDawg::Responsys::MergeTableRecordsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeTableRecordsResponse"),
     :schema_element => [
-      ["result", "MergeResult"]
+      ["result", "SunDawg::Responsys::MergeResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RetrieveTableRecords,
+    :class => SunDawg::Responsys::RetrieveTableRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveTableRecords"),
     :schema_element => [
-      ["table", "InteractObject"],
+      ["table", "SunDawg::Responsys::InteractObject"],
       ["queryColumn", "SOAP::SOAPString"],
       ["fieldList", "SOAP::SOAPString[]", [1, nil]],
       ["idsToRetrieve", "SOAP::SOAPString[]", [1, nil]]
@@ -1567,41 +1567,41 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => RetrieveTableRecordsResponse,
+    :class => SunDawg::Responsys::RetrieveTableRecordsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveTableRecordsResponse"),
     :schema_element => [
-      ["result", "RetrieveResult"]
+      ["result", "SunDawg::Responsys::RetrieveResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteTableRecords,
+    :class => SunDawg::Responsys::DeleteTableRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteTableRecords"),
     :schema_element => [
-      ["table", "InteractObject"],
+      ["table", "SunDawg::Responsys::InteractObject"],
       ["queryColumn", "SOAP::SOAPString"],
       ["idsToDelete", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteTableRecordsResponse,
+    :class => SunDawg::Responsys::DeleteTableRecordsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteTableRecordsResponse"),
     :schema_element => [
-      ["result", "DeleteResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::DeleteResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TruncateTable,
+    :class => SunDawg::Responsys::TruncateTable,
     :schema_name => XSD::QName.new(NsWsRsysCom, "truncateTable"),
     :schema_element => [
-      ["table", "InteractObject"]
+      ["table", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TruncateTableResponse,
+    :class => SunDawg::Responsys::TruncateTableResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "truncateTableResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1609,18 +1609,18 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CreateSQLView,
+    :class => SunDawg::Responsys::CreateSQLView,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createSQLView"),
     :schema_element => [
-      ["sqlView", "InteractObject"],
-      ["tables", "InteractObject[]", [1, nil]],
+      ["sqlView", "SunDawg::Responsys::InteractObject"],
+      ["tables", "SunDawg::Responsys::InteractObject[]", [1, nil]],
       ["sqlQuery", "SOAP::SOAPString"],
       ["dataExtractionKey", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateSQLViewResponse,
+    :class => SunDawg::Responsys::CreateSQLViewResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createSQLViewResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1628,16 +1628,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => CreateLinkTable,
+    :class => SunDawg::Responsys::CreateLinkTable,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createLinkTable"),
     :schema_element => [
-      ["linkTable", "InteractObject"],
+      ["linkTable", "SunDawg::Responsys::InteractObject"],
       ["description", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateLinkTableResponse,
+    :class => SunDawg::Responsys::CreateLinkTableResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createLinkTableResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1645,15 +1645,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteLinkTable,
+    :class => SunDawg::Responsys::DeleteLinkTable,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteLinkTable"),
     :schema_element => [
-      ["linkTable", "InteractObject"]
+      ["linkTable", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteLinkTableResponse,
+    :class => SunDawg::Responsys::DeleteLinkTableResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteLinkTableResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1661,67 +1661,67 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => MergeLinkRecords,
+    :class => SunDawg::Responsys::MergeLinkRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeLinkRecords"),
     :schema_element => [
-      ["linkTable", "InteractObject"],
-      ["recordData", "RecordData"]
+      ["linkTable", "SunDawg::Responsys::InteractObject"],
+      ["recordData", "SunDawg::Responsys::RecordData"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeLinkRecordsResponse,
+    :class => SunDawg::Responsys::MergeLinkRecordsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeLinkRecordsResponse"),
     :schema_element => [
-      ["result", "MergeResult"]
+      ["result", "SunDawg::Responsys::MergeResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RetrieveLinkRecords,
+    :class => SunDawg::Responsys::RetrieveLinkRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveLinkRecords"),
     :schema_element => [
-      ["linkTable", "InteractObject"]
+      ["linkTable", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RetrieveLinkRecordsResponse,
+    :class => SunDawg::Responsys::RetrieveLinkRecordsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveLinkRecordsResponse"),
     :schema_element => [
-      ["result", "RetrieveResult"]
+      ["result", "SunDawg::Responsys::RetrieveResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteLinkRecords,
+    :class => SunDawg::Responsys::DeleteLinkRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteLinkRecords"),
     :schema_element => [
-      ["linkTable", "InteractObject"],
+      ["linkTable", "SunDawg::Responsys::InteractObject"],
       ["linkNamesToDelete", "SOAP::SOAPString[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteLinkRecordsResponse,
+    :class => SunDawg::Responsys::DeleteLinkRecordsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteLinkRecordsResponse"),
     :schema_element => [
-      ["result", "DeleteResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::DeleteResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateDocument,
+    :class => SunDawg::Responsys::CreateDocument,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createDocument"),
     :schema_element => [
-      ["document", "InteractObject"],
+      ["document", "SunDawg::Responsys::InteractObject"],
       ["content", "SOAP::SOAPString"],
-      ["characterEncoding", "CharacterEncoding"]
+      ["characterEncoding", "SunDawg::Responsys::CharacterEncoding"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CreateDocumentResponse,
+    :class => SunDawg::Responsys::CreateDocumentResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "createDocumentResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1729,15 +1729,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DeleteDocument,
+    :class => SunDawg::Responsys::DeleteDocument,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteDocument"),
     :schema_element => [
-      ["document", "InteractObject"]
+      ["document", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DeleteDocumentResponse,
+    :class => SunDawg::Responsys::DeleteDocumentResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "deleteDocumentResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1745,16 +1745,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => SetDocumentImages,
+    :class => SunDawg::Responsys::SetDocumentImages,
     :schema_name => XSD::QName.new(NsWsRsysCom, "setDocumentImages"),
     :schema_element => [
-      ["document", "InteractObject"],
-      ["imageData", "ImageData[]", [1, nil]]
+      ["document", "SunDawg::Responsys::InteractObject"],
+      ["imageData", "SunDawg::Responsys::ImageData[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => SetDocumentImagesResponse,
+    :class => SunDawg::Responsys::SetDocumentImagesResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "setDocumentImagesResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1762,32 +1762,32 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetDocumentImages,
+    :class => SunDawg::Responsys::GetDocumentImages,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getDocumentImages"),
     :schema_element => [
-      ["document", "InteractObject"]
+      ["document", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetDocumentImagesResponse,
+    :class => SunDawg::Responsys::GetDocumentImagesResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getDocumentImagesResponse"),
     :schema_element => [
-      ["result", "ImageData[]", [1, nil]]
+      ["result", "SunDawg::Responsys::ImageData[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => SetDocumentContent,
+    :class => SunDawg::Responsys::SetDocumentContent,
     :schema_name => XSD::QName.new(NsWsRsysCom, "setDocumentContent"),
     :schema_element => [
-      ["document", "InteractObject"],
+      ["document", "SunDawg::Responsys::InteractObject"],
       ["content", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => SetDocumentContentResponse,
+    :class => SunDawg::Responsys::SetDocumentContentResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "setDocumentContentResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1795,32 +1795,32 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetDocumentContent,
+    :class => SunDawg::Responsys::GetDocumentContent,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getDocumentContent"),
     :schema_element => [
-      ["document", "InteractObject"]
+      ["document", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetDocumentContentResponse,
+    :class => SunDawg::Responsys::GetDocumentContentResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getDocumentContentResponse"),
     :schema_element => [
-      ["result", "ContentResult"]
+      ["result", "SunDawg::Responsys::ContentResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => Copy,
+    :class => SunDawg::Responsys::Copy,
     :schema_name => XSD::QName.new(NsWsRsysCom, "copy"),
     :schema_element => [
-      ["existingObject", "InteractObject"],
-      ["newObject", "InteractObject"]
+      ["existingObject", "SunDawg::Responsys::InteractObject"],
+      ["newObject", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CopyResponse,
+    :class => SunDawg::Responsys::CopyResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "copyResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1828,16 +1828,16 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => Move,
+    :class => SunDawg::Responsys::Move,
     :schema_name => XSD::QName.new(NsWsRsysCom, "move"),
     :schema_element => [
-      ["existingObject", "InteractObject"],
-      ["newObject", "InteractObject"]
+      ["existingObject", "SunDawg::Responsys::InteractObject"],
+      ["newObject", "SunDawg::Responsys::InteractObject"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MoveResponse,
+    :class => SunDawg::Responsys::MoveResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "moveResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPBoolean"]
@@ -1845,13 +1845,13 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetServerTimestamp,
+    :class => SunDawg::Responsys::GetServerTimestamp,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getServerTimestamp"),
     :schema_element => []
   )
 
   LiteralRegistry.register(
-    :class => GetServerTimestampResponse,
+    :class => SunDawg::Responsys::GetServerTimestampResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getServerTimestampResponse"),
     :schema_element => [
       ["result", "SOAP::SOAPDateTime"]
@@ -1859,23 +1859,23 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => DescribeObjects,
+    :class => SunDawg::Responsys::DescribeObjects,
     :schema_name => XSD::QName.new(NsWsRsysCom, "describeObjects"),
     :schema_element => [
-      ["objects", "InteractObject[]", [1, nil]]
+      ["objects", "SunDawg::Responsys::InteractObject[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DescribeObjectsResponse,
+    :class => SunDawg::Responsys::DescribeObjectsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "describeObjectsResponse"),
     :schema_element => [
-      ["result", "DescribeObjectResult[]", [1, nil]]
+      ["result", "SunDawg::Responsys::DescribeObjectResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => RunJob,
+    :class => SunDawg::Responsys::RunJob,
     :schema_name => XSD::QName.new(NsWsRsysCom, "runJob"),
     :schema_element => [
       ["jobId", "SOAP::SOAPLong"]
@@ -1883,15 +1883,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => RunJobResponse,
+    :class => SunDawg::Responsys::RunJobResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "runJobResponse"),
     :schema_element => [
-      ["result", "RunJobResult"]
+      ["result", "SunDawg::Responsys::RunJobResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetJobRunStatus,
+    :class => SunDawg::Responsys::GetJobRunStatus,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobRunStatus"),
     :schema_element => [
       ["jobRunId", "SOAP::SOAPLong"]
@@ -1899,29 +1899,29 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetJobRunStatusResponse,
+    :class => SunDawg::Responsys::GetJobRunStatusResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobRunStatusResponse"),
     :schema_element => [
-      ["result", "JobRunStatusResult"]
+      ["result", "SunDawg::Responsys::JobRunStatusResult"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetJobs,
+    :class => SunDawg::Responsys::GetJobs,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobs"),
     :schema_element => []
   )
 
   LiteralRegistry.register(
-    :class => GetJobsResponse,
+    :class => SunDawg::Responsys::GetJobsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobsResponse"),
     :schema_element => [
-      ["result", "ConnectJob[]", [1, nil]]
+      ["result", "SunDawg::Responsys::ConnectJob[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetJobRuns,
+    :class => SunDawg::Responsys::GetJobRuns,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobRuns"),
     :schema_element => [
       ["jobId", "SOAP::SOAPLong"],
@@ -1931,15 +1931,15 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetJobRunsResponse,
+    :class => SunDawg::Responsys::GetJobRunsResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobRunsResponse"),
     :schema_element => [
-      ["result", "ConnectJobRun[]", [1, nil]]
+      ["result", "SunDawg::Responsys::ConnectJobRun[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => GetJobRunLog,
+    :class => SunDawg::Responsys::GetJobRunLog,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobRunLog"),
     :schema_element => [
       ["jobRunId", "SOAP::SOAPLong"]
@@ -1947,164 +1947,164 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
-    :class => GetJobRunLogResponse,
+    :class => SunDawg::Responsys::GetJobRunLogResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "getJobRunLogResponse"),
     :schema_element => [
-      ["result", "ConnectJobRunLog[]", [1, nil]]
+      ["result", "SunDawg::Responsys::ConnectJobRunLog[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeListMembersRIID,
+    :class => SunDawg::Responsys::MergeListMembersRIID,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeListMembersRIID"),
     :schema_element => [
-      ["list", "InteractObject"],
-      ["recordData", "RecordData"],
-      ["mergeRule", "ListMergeRule"]
+      ["list", "SunDawg::Responsys::InteractObject"],
+      ["recordData", "SunDawg::Responsys::RecordData"],
+      ["mergeRule", "SunDawg::Responsys::ListMergeRule"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeListMembersRIIDResponse,
+    :class => SunDawg::Responsys::MergeListMembersRIIDResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeListMembersRIIDResponse"),
     :schema_element => [
-      ["recipientResult", "RecipientResult[]", [1, nil]]
+      ["recipientResult", "SunDawg::Responsys::RecipientResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeIntoProfileExtension,
+    :class => SunDawg::Responsys::MergeIntoProfileExtension,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeIntoProfileExtension"),
     :schema_element => [
-      ["profileExtension", "InteractObject"],
-      ["recordData", "RecordData"],
-      ["matchColumn", "QueryColumn"],
+      ["profileExtension", "SunDawg::Responsys::InteractObject"],
+      ["recordData", "SunDawg::Responsys::RecordData"],
+      ["matchColumn", "SunDawg::Responsys::QueryColumn"],
       ["insertOnNoMatch", "SOAP::SOAPBoolean"],
-      ["updateOnMatch", "UpdateOnMatch"]
+      ["updateOnMatch", "SunDawg::Responsys::UpdateOnMatch"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => MergeIntoProfileExtensionResponse,
+    :class => SunDawg::Responsys::MergeIntoProfileExtensionResponse,
     :schema_name => XSD::QName.new(NsWsRsysCom, "mergeIntoProfileExtensionResponse"),
     :schema_element => [
-      ["recipientResult", "RecipientResult[]", [1, nil]]
+      ["recipientResult", "SunDawg::Responsys::RecipientResult[]", [1, nil]]
     ]
   )
 
   LiteralRegistry.register(
-    :class => AccountFault,
+    :class => SunDawg::Responsys::AccountFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "AccountFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => FolderFault,
+    :class => SunDawg::Responsys::FolderFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "FolderFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TriggeredMessageFault,
+    :class => SunDawg::Responsys::TriggeredMessageFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "TriggeredMessageFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CustomEventFault,
+    :class => SunDawg::Responsys::CustomEventFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "CustomEventFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => CampaignFault,
+    :class => SunDawg::Responsys::CampaignFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "CampaignFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ListFault,
+    :class => SunDawg::Responsys::ListFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "ListFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => TableFault,
+    :class => SunDawg::Responsys::TableFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "TableFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => LinkTableFault,
+    :class => SunDawg::Responsys::LinkTableFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "LinkTableFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => DocumentFault,
+    :class => SunDawg::Responsys::DocumentFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "DocumentFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ObjectFault,
+    :class => SunDawg::Responsys::ObjectFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "ObjectFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ConnectFault,
+    :class => SunDawg::Responsys::ConnectFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "ConnectFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => ListExtensionFault,
+    :class => SunDawg::Responsys::ListExtensionFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "ListExtensionFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
 
   LiteralRegistry.register(
-    :class => UnexpectedErrorFault,
+    :class => SunDawg::Responsys::UnexpectedErrorFault,
     :schema_name => XSD::QName.new(NsFaultWsRsysCom, "UnexpectedErrorFault"),
     :schema_element => [
-      ["exceptionCode", "ExceptionCode"],
+      ["exceptionCode", "SunDawg::Responsys::ExceptionCode"],
       ["exceptionMessage", "SOAP::SOAPString"]
     ]
   )
