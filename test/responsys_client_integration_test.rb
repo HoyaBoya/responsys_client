@@ -7,13 +7,19 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
   CAMPAIGN_TRANSACTION_NAME = "GemTransactionalEmail"
   LIST_NAME = "GemList"
   EMAIL = "gem.test@responsys.client.gem.com"
+  INTEGRATION = true
 
   def setup
     config = YAML.load_file("test/config.yml")
     @username = config["username"]
     @password = config["password"]
-    @client = SunDawg::Responsys::ResponsysClient.new(@username, @password) #, :wiredump_dev => STDOUT)
+    @file_handle = File.open('/tmp/wiredump', 'w')
+    @client = SunDawg::Responsys::ResponsysClient.new(@username, @password, :wiredump_dev => @file_handle)
     SunDawg::Responsys::Member.clear_fields!
+  end
+
+  def teardown
+    @file_handle.close()
   end
 
   class << self
@@ -29,10 +35,10 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
 
   with_integration do
     def test_invalid_login
-      error = assert_raise AccountFault do
+      error = assert_raise SunDawg::Responsys::AccountFault do
         SunDawg::Responsys::ResponsysClient.new("foo", "bar").login
       end
-      assert_equal ExceptionCode::INVALID_USER_NAME, error.exception_code
+      assert_equal SunDawg::Responsys::ExceptionCode::INVALID_USER_NAME, error.exception_code
     end
 
     def test_login
@@ -84,7 +90,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       member = SunDawg::Responsys::Member.new
       member.customer_id = Time.now.to_i 
       member.email_address = "lol.cats.sundawg.#{Time.now.to_i}@sundawg.net"
-      member.email_permission_status = PermissionStatus::OPTIN
+      member.email_permission_status = SunDawg::Responsys::PermissionStatus::OPTIN
       member.city = "San Francisco"
       member.state = "CA"
       member.expects(:state).never
@@ -103,7 +109,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       member = SunDawg::Responsys::Member.new
       member.customer_id = Time.now.to_i 
       member.email_address = "sundawg-montgomery@sundawg.net"
-      member.email_permission_status = PermissionStatus::OPTIN
+      member.email_permission_status = SunDawg::Responsys::PermissionStatus::OPTIN
       member.city = "Montgomery"
       member.state = "AL"
 
