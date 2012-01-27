@@ -174,7 +174,7 @@ module SunDawg
 
       protected
 
-      # Attempts to find the actual service error within SOAP:::FaultError and raise that instead
+      # Attempts to find the actual service error within SOAP::FaultError and raise that instead
       def with_application_error
         begin
           yield
