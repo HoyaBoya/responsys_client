@@ -71,10 +71,39 @@ class ResponsysClientTest < Test::Unit::TestCase
     ResponsysWS.stubs(:new).returns(ws)
 
     ws.expects(:triggerCampaignMessage).with do |tcm|
-      tcm.recipientData.optionalData.none? {|od| od.value =~ /[[:cntrl:]]/}
+      tcm.recipientData[0].optionalData.none? {|od| od.value =~ /[[:cntrl:]]/}
     end
 
     SunDawg::Responsys::ResponsysClient.new('foo','bar').trigger_user_campaign('campaign', {:id => 5}, { 'DataField' => "vertical\vtab" })
+  end
+
+  def test_trigger_batch_campaign
+    ws = stub(:login => stub(:result => stub(:sessionId => 'session ID')),
+              :logout => true,
+              :headerhandler => stub(:add))
+    ResponsysWS.stubs(:new).returns(ws)
+
+    recipients = {
+      'user_1' => { 'SomeData' => 'a value' },
+      2 => { 'MoreData' => 'its value' }
+    }
+
+    ws.expects(:triggerCampaignMessage).with do |tcm|
+      assert_equal recipients.size, tcm.recipientData.length
+
+      tcm.recipientData.each do |recipient_data|
+        recipient = recipients[recipient_data.recipient.customerId]
+        (0..(recipient_data.optionalData.length-1)).each do |i|
+          assert_equal recipient[recipient_data.optionalData[i].name], recipient_data.optionalData[i].value
+        end
+        true
+      end
+    end
+
+    ids = recipients.keys.map { |id| { :id => id } }
+    options = recipients.keys.map { |id| recipients[id] }
+
+    SunDawg::Responsys::ResponsysClient.new('foo','bar').trigger_user_batch_campaign('campaign', ids, options)
   end
   
 end

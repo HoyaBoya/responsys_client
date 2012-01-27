@@ -122,17 +122,29 @@ module SunDawg
       end
 
       def trigger_user_campaign(campaign_name, recipient_info, options = {})
-        # Responsys requires something in the optional data for SOAP bindings to work
-        options[:foo] = :bar if options.size == 0
+        trigger_user_batch_campaign campaign_name, [recipient_info], [options]
+      end
 
-        with_session do
-          trigger_campaign_message = TriggerCampaignMessage.new
+      def trigger_user_batch_campaign(campaign_name, recipients, recipient_options)
+        trigger_campaign_message = TriggerCampaignMessage.new
+        interact_object = InteractObject.new
+        interact_object.folderName = 'ignored'
+        interact_object.objectName = campaign_name
+        trigger_campaign_message.campaign = interact_object
+        trigger_campaign_message.recipientData = []
+
+        recipients.each_with_index do |recipient_info, i|
+          options = recipient_options[i]
+
+          # Responsys requires something in the optional data for SOAP bindings to work
+          options[:foo] = :bar if options.size == 0
+
           recipient = Recipient.new
           recipient.emailAddress = recipient_info[:email] if recipient_info[:email]
           recipient.customerId = recipient_info[:id] if recipient_info[:id]
           recipient_data = RecipientData.new
-          recipient_data.optionalData = []
           recipient_data.recipient = recipient
+          recipient_data.optionalData = []
           options.each_pair do |k, v|
             optional_data = OptionalData.new
             optional_data.name = k
@@ -140,11 +152,11 @@ module SunDawg
             optional_data.value = v 
             recipient_data.optionalData << optional_data
           end
-          interact_object = InteractObject.new
-          interact_object.folderName = 'ignored'
-          interact_object.objectName = campaign_name
-          trigger_campaign_message.campaign = interact_object
-          trigger_campaign_message.recipientData = recipient_data
+
+          trigger_campaign_message.recipientData << recipient_data
+        end
+
+        with_session do
           @responsys_client.triggerCampaignMessage trigger_campaign_message
         end
       end
