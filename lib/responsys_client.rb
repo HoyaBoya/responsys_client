@@ -20,6 +20,7 @@ module SunDawg
       end
 
       attr_reader :session_id
+      attr_reader :timeout_threshold
       attr_accessor :keep_alive
 
       # Creates a client object to connect to Responsys via SOAP API
@@ -28,12 +29,14 @@ module SunDawg
       # <password> - The login password
       # <options...> - Hash of additional options
       #   :keep_alive => true|false - (Default=false) Keep session alive for multiple requests
+      #   :timeout_threshold => Seconds (Default=120) Length of time to timeout a request
       #   :wiredump_dev => IO - Dump all messages (reply and responses) to IO 
       #
       def initialize(username, password, options = {})
         @username = username
         @password = password
         @keep_alive = options[:keep_alive]
+        @timeout_threshold = options[:timeout_threshold] || 120
         @responsys_client = ResponsysWS.new
         @responsys_client.wiredump_dev = options[:wiredump_dev] if options[:wiredump_dev]
       end 
@@ -162,7 +165,7 @@ module SunDawg
       end
 
       def with_timeout
-        Timeout::timeout(60, ResponsysTimeoutError) do
+        Timeout::timeout(timeout_threshold, ResponsysTimeoutError) do
           yield
         end
       end
