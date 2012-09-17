@@ -29,17 +29,28 @@ module SunDawg
       # <password> - The login password
       # <options...> - Hash of additional options
       #   :keep_alive => true|false - (Default=false) Keep session alive for multiple requests
-      #   :timeout_threshold => Seconds (Default=120) Length of time to timeout a request
+      #   :timeout_threshold => Seconds (Default=180) Length of time to timeout a request
       #   :wiredump_dev => IO - Dump all messages (reply and responses) to IO 
       #
       def initialize(username, password, options = {})
         @username = username
         @password = password
         @keep_alive = options[:keep_alive]
-        @timeout_threshold = options[:timeout_threshold] || 120
         @responsys_client = ResponsysWS.new
         @responsys_client.wiredump_dev = options[:wiredump_dev] if options[:wiredump_dev]
+
+        self.timeout_threshold = options[:timeout_threshold] || 180
       end 
+
+      def timeout_threshold=(secs)
+        # Sets the timeout on the internal responsys http client according
+        # to Travis' research in case 15230.
+        @responsys_client.options['protocol.http.connect_timeout'] = secs
+        @responsys_client.options['protocol.http.send_timeout'] = secs
+        @responsys_client.options['protocol.http.receive_timeout']  = secs
+
+        @timeout_threshold = secs
+      end
 
       def login
         with_application_error do
