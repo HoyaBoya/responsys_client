@@ -54,7 +54,8 @@ class ResponsysClientTest < Test::Unit::TestCase
 
     ws = stub(:login => stub(:result => stub(:sessionId => 'session ID')),
               :logout => true,
-              :headerhandler => stub(:add))
+              :headerhandler => stub(:add),
+              :options => {})
     ResponsysWS.stubs(:new).returns(ws)
 
     ws.expects(:mergeListMembers).with do |mlm|
@@ -67,7 +68,8 @@ class ResponsysClientTest < Test::Unit::TestCase
   def test_trigger_campaign_removes_illegal_xml_characters
     ws = stub(:login => stub(:result => stub(:sessionId => 'session ID')),
               :logout => true,
-              :headerhandler => stub(:add))
+              :headerhandler => stub(:add),
+              :options => {})
     ResponsysWS.stubs(:new).returns(ws)
 
     ws.expects(:triggerCampaignMessage).with do |tcm|
@@ -80,7 +82,8 @@ class ResponsysClientTest < Test::Unit::TestCase
   def test_trigger_batch_campaign
     ws = stub(:login => stub(:result => stub(:sessionId => 'session ID')),
               :logout => true,
-              :headerhandler => stub(:add))
+              :headerhandler => stub(:add),
+              :options => {})
     ResponsysWS.stubs(:new).returns(ws)
 
     recipients = {
