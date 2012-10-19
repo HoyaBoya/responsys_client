@@ -102,6 +102,15 @@ You can also parse the response CSV file from Responsys. This is useful to find 
     user.save
   end
 
+=== Testing
+
+First, set up test/config.yml for the live integration test.  See the example at test/config.yml.sample
+
+
+Then you can run tests with:
+
+    rake
+
 == IMPORTANT 
 
 This gem is still in development mode. It is not hosted on rubygems.org yet.

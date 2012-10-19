@@ -130,7 +130,7 @@ class MemberTest < Test::Unit::TestCase
     SunDawg::Responsys::Member.extension_fields = {:file_a => [:foo], :file_b => [:bar]}
     member = SunDawg::Responsys::Member.new
     member.attributes = {:foo => "value_1", :bar => "value_2", :customer_id => 123}
-    SunDawg::Responsys::Member.expects(:build_csv_file).times(3)
+    SunDawg::Responsys::Member.expects(:build_csv_file).times(2)
     SunDawg::Responsys::Member.to_csv_extension_files([member], "/tmp", :headers => true, :access => "w")
   end
 
