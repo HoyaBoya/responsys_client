@@ -1679,6 +1679,41 @@ module SunDawg
       end
     end
 
+    # {urn:ws.rsys.com}mergeTableRecordsWithPK
+    class MergeTableRecordsWithPK
+      @@schema_type = "mergeTableRecordsWithPK"
+      @@schema_ns = "urn:ws.rsys.com"
+      @@schema_qualified = "true"
+      @@schema_element = [["table", "InteractObject"], ["recordData", "RecordData"], ["insertOnNoMatch", "SOAP::SOAPBoolean"], ["updateOnMatch", "SOAP::SOAPString"]]
+
+      attr_accessor :table
+      attr_accessor :recordData
+      attr_accessor :insertOnNoMatch
+      attr_accessor :updateOnMatch
+
+      def initialize(table = nil, recordData = nil, insertOnNoMatch = nil, updateOnMatch = nil)
+        @table = table
+        @recordData = recordData
+        @insertOnNoMatch = insertOnNoMatch
+        @updateOnMatch = updateOnMatch
+      end
+    end
+
+    # {urn:ws.rsys.com}mergeTableRecordsWithPKResponse
+    class MergeTableRecordsWithPKResponse
+      @@schema_type = "mergeTableRecordsWithPKResponse"
+      @@schema_ns = "urn:ws.rsys.com"
+      @@schema_qualified = "true"
+      @@schema_element = [["result", "MergeResult"]]
+
+      attr_accessor :result
+
+      def initialize(result = nil)
+        @result = result
+      end
+    end
+
+
     # {urn:ws.rsys.com}mergeTableRecordsResponse
     #   result - MergeResult
     class MergeTableRecordsResponse

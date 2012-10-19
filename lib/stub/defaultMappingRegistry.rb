@@ -1556,6 +1556,25 @@ module DefaultMappingRegistry
   )
 
   LiteralRegistry.register(
+    :class => SunDawg::Responsys::MergeTableRecordsWithPK,
+    :schema_name => XSD::QName.new(NsWsRsysCom, "mergeTableRecordsWithPK"),
+    :schema_element => [
+      ["table", "SunDawg::Responsys::InteractObject"],
+      ["recordData", "SunDawg::Responsys::RecordData"],
+      ["insertOnNoMatch", "SOAP::SOAPBoolean"],
+      ["updateOnMatch", "SunDawg::Responsys::UpdateOnMatch"]
+    ]
+  )
+
+  LiteralRegistry.register(
+    :class => SunDawg::Responsys::MergeTableRecordsWithPKResponse,
+    :schema_name => XSD::QName.new(NsWsRsysCom, "mergeTableRecordsWithPKResponse"),
+    :schema_element => [
+      ["result", "SunDawg::Responsys::MergeResult"]
+    ]
+  )
+
+  LiteralRegistry.register(
     :class => SunDawg::Responsys::RetrieveTableRecords,
     :schema_name => XSD::QName.new(NsWsRsysCom, "retrieveTableRecords"),
     :schema_element => [

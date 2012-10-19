@@ -92,6 +92,32 @@ module SunDawg
         end
       end
 
+      def save_supplemental_table_with_pk(folder_name, list_name, members)
+        with_session do
+          table = InteractObject.new
+          table.folderName = folder_name
+          table.objectName = list_name
+
+          record_data = RecordData.new
+          record_data.fieldNames = members.first.keys.map { |f| f.to_s.upcase }
+          record_data.records = []
+
+          members.each do |member|
+            record = []
+            record_data.fieldNames.each do |field|
+              record << member[field]
+            end
+            record_data.records << record
+          end
+
+          insert_on_match = true
+          update_on_match = UpdateOnMatch::REPLACE_ALL
+          merge = MergeTableRecordsWithPK.new(table, record_data, insert_on_match, update_on_match)
+          @responsys_client.mergeTableRecordsWithPK(merge)
+        end
+      end
+
+
       def save_members(folder_name, list_name, members, attributes = SunDawg::Responsys::Member.fields)
         raise MethodsNotSupportedError unless SunDawg::Responsys::Member.fields.include?(:email_address) && SunDawg::Responsys::Member.fields.include?(:email_permission_status) && SunDawg::Responsys::Member.fields.include?(:customer_id)
         raise TooManyMembersError if members.size > MAX_MEMBERS

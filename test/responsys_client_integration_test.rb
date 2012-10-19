@@ -6,6 +6,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
   CAMPAIGN_NAME = "GemCampaignEmail"
   CAMPAIGN_TRANSACTION_NAME = "GemTransactionalEmail"
   LIST_NAME = "GemList"
+
   EMAIL = "gem.test@responsys.client.gem.com"
   CONFIG_FILE_PATH = "test/config.yml"
 
@@ -64,6 +65,21 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       assert response.result
       results = @client.list_folders
       assert results.map { |i| i.name }.include? folder_name
+    end
+
+    # This assumes you have a supplemental table called gem_jpj in the Test_Gem list with this schema:
+    # JPJ_1 Text Field (Primary Key)
+    # JPJ_2 Text Field
+    def test_save_supplemental_table_with_pk
+      rando = rand(100)
+      member = {
+        'JPJ_1' => "I am a donkey",
+        'JPJ_2' => "But I love you #{rando}"
+      }
+      response = @client.save_supplemental_table_with_pk(FOLDER_NAME, 'gem_jpj', [member])
+      result = response.result
+      assert_equal 1, result.totalCount
+      assert_equal '', result.errorMessage
     end
 
     def test_save_members
@@ -145,7 +161,7 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       begin
         response = @client.launch_campaign FOLDER_NAME, CAMPAIGN_NAME
         assert response.result 
-      rescue CampaignFault => e
+      rescue SunDawg::Responsys::CampaignFault => e
         # Responsys does not allow campaigns to be launched less than 15 minute attempts
         assert_equal "Launch attempt failed: A campaign cannot be launched more than once per 15 minutes.", e.exception_message
       end
