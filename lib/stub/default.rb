@@ -2232,6 +2232,11 @@ module SunDawg
     #   insertOnNoMatch - SOAP::SOAPBoolean
     #   updateOnMatch - UpdateOnMatch
     class MergeIntoProfileExtension
+      @@schema_type = "mergeIntoProfileExtension"
+      @@schema_ns = "urn:ws.rsys.com"
+      @@schema_qualified = "type"
+      @@schema_element = [[ "table", "InteractObject"], ["recordData", "RecordData"], ["matchColumn", "QueryColumn"], ["insertOnNoMatch", "SOAP::SOAPBoolean"], ["updateOnMatch", "SOAP::SOAPString"]]
+
       attr_accessor :profileExtension
       attr_accessor :recordData
       attr_accessor :matchColumn
@@ -2249,6 +2254,16 @@ module SunDawg
 
     # {urn:ws.rsys.com}mergeIntoProfileExtensionResponse
     class MergeIntoProfileExtensionResponse < ::Array
+      @@schema_type = "mergeIntoProfileExtensionResponse"
+      @@schema_ns = "urn:ws.rsys.com"
+      @@schema_qualified = "true"
+      @@schema_element = [["recipientResult", "RecipientResult[]"]]
+
+      attr_accessor :recipientResult
+
+      def initialize(recipientResult = nil)
+        @recipientResult = recipientResult
+      end      
     end
 
     module RubyFriendlyMethods

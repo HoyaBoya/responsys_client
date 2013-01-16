@@ -99,22 +99,41 @@ module SunDawg
           table.objectName = list_name
 
           record_data = RecordData.new
-          record_data.fieldNames = members.first.keys.map { |f| f.to_s.upcase }
+          table_fields = {}
+          members.first.keys.each { |k| table_fields[k.to_s.upcase] = k }
+
+          record_data.fieldNames = table_fields.keys
           record_data.records = []
+          record_data.records = members.map {|member| record = []; record = record_data.fieldNames.map { |field| member[table_fields[field]] }; record }
 
-          members.each do |member|
-            record = []
-            record_data.fieldNames.each do |field|
-              record << member[field]
-            end
-            record_data.records << record
-          end
-
-          insert_on_match = true
+          insert_on_no_match = true
           update_on_match = UpdateOnMatch::REPLACE_ALL
-          merge = MergeTableRecordsWithPK.new(table, record_data, insert_on_match, update_on_match)
+          merge = MergeTableRecordsWithPK.new(table, record_data, insert_on_no_match, update_on_match)
           @responsys_client.mergeTableRecordsWithPK(merge)
         end
+      end
+
+      def save_profile_extension_table(folder_name, list_name, members, matching_column='RIID')
+        with_session do
+
+          table = InteractObject.new
+          table.folderName = folder_name
+          table.objectName = list_name
+
+          record_data = RecordData.new
+          table_fields = {}
+          members.first.keys.each { |k| table_fields[k.to_s.upcase] = k } 
+
+          record_data.fieldNames = table_fields.keys 
+          record_data.records = []
+          record_data.records = members.map {|member| record = []; record = record_data.fieldNames.map { |field| member[table_fields[field]] }; record }
+     
+          query_column = QueryColumn.new(matching_column)
+          insert_on_no_match = true
+          update_on_match = UpdateOnMatch::REPLACE_ALL
+          merge = MergeIntoProfileExtension.new(table, record_data, query_column, insert_on_no_match, update_on_match)
+          @responsys_client.mergeIntoProfileExtension(merge)
+        end 
       end
 
 

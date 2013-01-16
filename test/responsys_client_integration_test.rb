@@ -81,6 +81,22 @@ class ResponsysClientIntegrationTest < Test::Unit::TestCase
       assert_equal 1, result.totalCount
       assert_equal '', result.errorMessage
     end
+    
+    # This assumes you have a Porfile Extensions Table called gem_fire in the Test_Gem folder.
+    # This also assumes that RIID_ is the match column for Test_Gem. The value for RIID_ should 
+    # be incordance to that of in the corresponding Profile List for Test_Gem. 
+    # JPJ_1 Text Field
+    # JPJ_2 Text Field
+    def test_save_profile_extension_table
+      member = { 
+        'JPJ_2' => "James Bond",
+        'JPJ_1' => "007",
+        'RIID_' => "511793"
+      }   
+      response = @client.save_profile_extension_table(FOLDER_NAME, 'gem_fire', [member], 'RIID' ) 
+      result = response.recipientResult
+      response.each{ |res| assert_equal '', res.errorMessage } 
+    end 
 
     def test_save_members
       SunDawg::Responsys::Member.add_field :customer_id, true
