@@ -102,6 +102,23 @@ You can also parse the response CSV file from Responsys. This is useful to find 
     user.save
   end
 
+=== Code Generation
+
+Some of the code is auto-generated.
+
+    /path/to/gems/soap4r-1.5.8/bin/wsdl2ruby.rb --wsdl https://ws5.responsys.net/webservices/wsdl/ResponsysWS_Level1.wsdl --type client
+
+generates the following files in /lib/stub: ResponsysWSServiceClient.rb, default.rb, defaultDriver.rb
+
+=== Testing
+
+First, set up test/config.yml for the live integration test.  See the example at test/config.yml.sample
+
+
+Then you can run tests with:
+
+    rake
+
 == IMPORTANT 
 
 This gem is still in development mode. It is not hosted on rubygems.org yet.

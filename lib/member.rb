@@ -23,7 +23,9 @@ module SunDawg
       def values(selected_fields = @@fields)
         a = []
         selected_fields.each do |field|
-          a << attributes[field]
+          value = attributes[field]
+          value.gsub!(/[[:cntrl:]]/,' ') if value.is_a? String
+          a << value
         end
         a
       end
@@ -114,11 +116,6 @@ module SunDawg
             extension_fields += i
           end
           extension_fields.flatten!
-
-          # Create the primary profile CSV
-          user_attributes = @@fields.reject { |i| extension_fields.include?(i) }
-          user_attributes = [:customer_id] + user_attributes unless user_attributes.include?(:customer_id)
-          build_csv_file(members, "#{root_directory}/member#{options[:file_token]}.csv", user_attributes, options[:headers], options[:access]) 
 
           # Create the profile extension CSVs
           @@extension_fields.each_pair do |file_name, attributes|

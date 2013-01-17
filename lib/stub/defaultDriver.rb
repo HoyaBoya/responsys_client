@@ -272,6 +272,13 @@ class ResponsysWS < ::SOAP::RPC::Driver
         :faults => {"TableFault_"=>{:ns=>"urn:ws.rsys.com", :use=>"literal", :namespace=>nil, :encodingstyle=>"document", :name=>"TableFault"}, "UnexpectedErrorFault_"=>{:ns=>"urn:ws.rsys.com", :use=>"literal", :namespace=>nil, :encodingstyle=>"document", :name=>"UnexpectedErrorFault"}} }
     ],
     [ "",
+      "mergeTableRecordsWithPK",
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "mergeTableRecordsWithPK"], true],
+        ["out", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "mergeTableRecordsWithPKResponse"], true] ],
+      { :request_style =>  :document, :request_use =>  :literal,
+        :response_style => :document, :response_use => :literal }
+    ],
+    [ "",
       "retrieveTableRecords",
       [ ["in", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "retrieveTableRecords"]],
         ["out", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "retrieveTableRecordsResponse"]] ],
@@ -473,8 +480,8 @@ class ResponsysWS < ::SOAP::RPC::Driver
     ],
     [ "",
       "mergeIntoProfileExtension",
-      [ ["in", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "mergeIntoProfileExtension"]],
-        ["out", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "mergeIntoProfileExtensionResponse"]] ],
+      [ ["in", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "mergeIntoProfileExtension"], true],
+        ["out", "parameters", ["::SOAP::SOAPElement", "urn:ws.rsys.com", "mergeIntoProfileExtensionResponse"], true] ],
       { :request_style =>  :document, :request_use =>  :literal,
         :response_style => :document, :response_use => :literal,
         :faults => {"UnexpectedErrorFault_"=>{:ns=>"urn:ws.rsys.com", :use=>"literal", :namespace=>nil, :encodingstyle=>"document", :name=>"UnexpectedErrorFault"}, "ListExtensionFault_"=>{:ns=>"urn:ws.rsys.com", :use=>"literal", :namespace=>nil, :encodingstyle=>"document", :name=>"ListExtensionFault"}} }

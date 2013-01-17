@@ -2,4 +2,4 @@ require 'test/unit'
 require 'rubygems'
 require 'mocha'
 
-INTEGRATION = false unless defined?(INTEGRATION)
+INTEGRATION = ENV['INTEGRATION'] unless defined?(INTEGRATION)

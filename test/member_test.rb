@@ -92,6 +92,17 @@ class MemberTest < Test::Unit::TestCase
     assert_equal ["value_1", "value_2", 123], member.values
   end
 
+  def test_values_remove_bad_xml_characters
+    SunDawg::Responsys::Member.add_field :foo
+    SunDawg::Responsys::Member.add_field :bar
+    SunDawg::Responsys::Member.add_field :nernt
+    member = SunDawg::Responsys::Member.new
+    member.foo = "value_1_with\vvertical_tab"
+    member.bar = "value_2_with\nnew_line"
+    member.nernt = 123 
+    assert_equal ["value_1_with vertical_tab", "value_2_with new_line", 123], member.values
+  end
+
   def test_values
     SunDawg::Responsys::Member.add_field :foo
     SunDawg::Responsys::Member.add_field :bar
@@ -119,7 +130,7 @@ class MemberTest < Test::Unit::TestCase
     SunDawg::Responsys::Member.extension_fields = {:file_a => [:foo], :file_b => [:bar]}
     member = SunDawg::Responsys::Member.new
     member.attributes = {:foo => "value_1", :bar => "value_2", :customer_id => 123}
-    SunDawg::Responsys::Member.expects(:build_csv_file).times(3)
+    SunDawg::Responsys::Member.expects(:build_csv_file).times(2)
     SunDawg::Responsys::Member.to_csv_extension_files([member], "/tmp", :headers => true, :access => "w")
   end
 
